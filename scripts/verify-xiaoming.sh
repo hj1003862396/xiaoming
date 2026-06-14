@@ -19,6 +19,13 @@ check_dir "skills/xiaoming"
 check_dir "skills/using-xiaoming-bootstrap"
 check_dir "docs/xiaoming"
 
+if [ ! -f "commands/xiaoming.md" ]; then
+    echo "❌ Slash command missing: commands/xiaoming.md"
+    errors=$((errors+1))
+else
+    echo "✅ Slash command exists: commands/xiaoming.md"
+fi
+
 # 2. Check manifests JSON validity and keys
 check_manifest() {
     local file="$1"
@@ -40,6 +47,13 @@ check_manifest ".cursor-plugin/plugin.json"
 check_manifest ".claude-plugin/plugin.json"
 check_manifest ".codex-plugin/plugin.json"
 check_manifest "gemini-extension.json"
+
+if [ -f "scripts/sync-to-cursor-local.sh" ] && [ -x "scripts/sync-to-cursor-local.sh" ]; then
+    echo "✅ Cursor local sync script exists and is executable"
+else
+    echo "❌ Missing or non-executable scripts/sync-to-cursor-local.sh"
+    errors=$((errors+1))
+fi
 
 # 3. Check for dangling superpowers namespaces in skills and docs
 dangling_ns=$(grep -rn "superpowers:" skills/ docs/ || true)
