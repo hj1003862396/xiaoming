@@ -50,7 +50,7 @@ digraph skill_flow {
     "收到用户消息" [shape=doublecircle];
     "即将进入计划模式？" [shape=doublecircle];
     "已经头脑风暴过了？" [shape=diamond];
-    "调用 brainstorming 技能" [shape=box];
+    "调用 xiaoming 技能" [shape=box];
     "可能有技能适用？" [shape=diamond];
     "调用 Skill 工具" [shape=box];
     "宣布：'正在使用 [skill] 来 [purpose]'" [shape=box];
@@ -60,9 +60,9 @@ digraph skill_flow {
     "响应（包括澄清问题）" [shape=doublecircle];
 
     "即将进入计划模式？" -> "已经头脑风暴过了？";
-    "已经头脑风暴过了？" -> "调用 brainstorming 技能" [label="否"];
+    "已经头脑风暴过了？" -> "调用 xiaoming 技能" [label="否"];
     "已经头脑风暴过了？" -> "可能有技能适用？" [label="是"];
-    "调用 brainstorming 技能" -> "可能有技能适用？";
+    "调用 xiaoming 技能" -> "可能有技能适用？";
 
     "收到用户消息" -> "可能有技能适用？";
     "可能有技能适用？" -> "调用 Skill 工具" [label="是，即使只有 1%"];
@@ -98,7 +98,7 @@ digraph skill_flow {
 
 当多个技能可能适用时，使用此顺序：
 
-1. **流程技能优先**（brainstorming、debugging）— 这些决定了如何处理任务
+1. **流程技能优先**（xiaoming、debugging）— 这些决定了如何处理任务
 2. **实施技能其次**（frontend-design、mcp-builder）— 这些指导执行
 
 "让我们构建 X" → 先头脑风暴，然后实施技能。

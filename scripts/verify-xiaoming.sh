@@ -61,6 +61,34 @@ else
     echo "✅ No dangling 'xiaoming:brainstorming' references found."
 fi
 
+# 5. Check for stale skills/brainstorming paths in active code
+stale_paths=$(grep -rn "skills/brainstorming" skills/ tests/ .github/ .opencode/ hooks/ scripts/ 2>/dev/null | grep -v 'scripts/verify-xiaoming.sh' || true)
+if [ -n "$stale_paths" ]; then
+    echo "❌ Stale 'skills/brainstorming' path references found:"
+    echo "$stale_paths"
+    errors=$((errors+1))
+else
+    echo "✅ No stale 'skills/brainstorming' path references found."
+fi
+
+# 6. Check for stale using-superpowers references in active code
+stale_bootstrap=$(grep -rn "using-superpowers" skills/ tests/ .github/ .opencode/ hooks/ scripts/ 2>/dev/null | grep -v 'scripts/verify-xiaoming.sh' || true)
+if [ -n "$stale_bootstrap" ]; then
+    echo "❌ Stale 'using-superpowers' references found:"
+    echo "$stale_bootstrap"
+    errors=$((errors+1))
+else
+    echo "✅ No stale 'using-superpowers' references found."
+fi
+
+# 7. Check OpenCode plugin loads the correct bootstrap skill path
+if grep -q "using-xiaoming/SKILL.md" .opencode/plugins/xiaoming.js 2>/dev/null; then
+    echo "❌ OpenCode plugin still references missing using-xiaoming/SKILL.md"
+    errors=$((errors+1))
+else
+    echo "✅ OpenCode plugin references using-xiaoming-bootstrap."
+fi
+
 # Summary
 if [ "$errors" -eq 0 ]; then
     echo "🎉 Verification passed! Rebranding to Xiaoming is successful."

@@ -73,7 +73,7 @@ of human involvement will be closed without review.
      runner), you MUST include a session transcript proving the
      integration actually works.
 
-     A real integration loads the `using-superpowers` bootstrap at session
+     A real integration loads the `using-xiaoming-bootstrap` bootstrap at session
      start. The bootstrap is what causes skills to auto-trigger. Without
      it, the skills are dead weight — present on disk but never invoked
      at the right moments.
@@ -83,7 +83,7 @@ of human involvement will be closed without review.
 
          Let's make a react todo list
 
-     A working integration auto-triggers the `brainstorming` skill before
+     A working integration auto-triggers the `xiaoming` skill before
      any code is written. Paste the complete transcript below.
 
      These are NOT real integrations and PRs that ship them will be closed:
@@ -91,7 +91,7 @@ of human involvement will be closed without review.
      - Manually copying skill files into the harness
      - Wrapping with `npx skills` or similar at-runtime shims
      - Anything that requires the user to opt in to skills per-session
-     - Anything where brainstorming does not auto-trigger on the test above
+     - Anything where xiaoming does not auto-trigger on the test above
 
      If you are not sure whether your integration loads the bootstrap at
      session start, it does not.
@@ -117,7 +117,7 @@ paste the complete transcript here
 
 ## Rigor
 
-- [ ] If this is a skills change: I used `superpowers:writing-skills` and
+- [ ] If this is a skills change: I used `xiaoming:writing-skills` and
       completed adversarial pressure testing (paste results below)
 - [ ] This change was tested adversarially, not just on the happy path
 - [ ] I did not modify carefully-tuned content (Red Flags table,

@@ -50,7 +50,7 @@ use skill tool to list skills
 ### Loading a Skill
 
 ```
-use skill tool to load xiaoming/brainstorming
+use skill tool to load xiaoming/xiaoming
 ```
 
 ### Personal Skills

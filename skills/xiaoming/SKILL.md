@@ -161,4 +161,4 @@ digraph brainstorming {
 关于 UI 话题的问题并不自动成为视觉问题。"这个上下文里'个性'是什么意思？"是概念性问题——用终端。"哪种向导布局更好？"是视觉问题——用浏览器。
 
 如果用户同意使用伴侣，在继续之前请阅读详细指南：
-`skills/brainstorming/visual-companion.md`
+`skills/xiaoming/visual-companion.md`

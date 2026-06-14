@@ -45,7 +45,7 @@ Use OpenCode's native `skill` tool:
 
 ```
 use skill tool to list skills
-use skill tool to load xiaoming/brainstorming
+use skill tool to load xiaoming/xiaoming
 ```
 
 ## Updating
