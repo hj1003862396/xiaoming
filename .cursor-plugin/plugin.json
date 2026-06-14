@@ -1,7 +1,7 @@
 {
-  "name": "superpowers",
-  "displayName": "Superpowers",
-  "description": "Core skills library: TDD, debugging, collaboration patterns, and proven techniques",
+  "name": "xiaoming",
+  "displayName": "Xiaoming",
+  "description": "核心技能库：测试驱动开发、系统调试、协作模式与最佳实践流程",
   "version": "5.1.0",
   "author": {
     "name": "Jesse Vincent",

@@ -1,6 +1,6 @@
 {
-  "name": "superpowers",
-  "description": "Core skills library: TDD, debugging, collaboration patterns, and proven techniques",
+  "name": "xiaoming",
+  "description": "小明核心技能库：测试驱动开发、系统调试、协作模式与最佳实践",
   "version": "5.1.0",
   "contextFileName": "GEMINI.md"
 }
