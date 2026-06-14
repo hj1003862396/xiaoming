@@ -1,233 +1,230 @@
-# Superpowers
+# 小明 (Xiaoming)
 
-Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
+小明 (Xiaoming) 是一套专为编码代理（Coding Agents）设计的完整软件开发方法论，它建立在可组合的技能集以及一系列引导代理必须使用 these 技能的初始指令基础之上。
 
-## Quickstart
+## 快速入门
 
-Give your agent Superpowers: [Claude Code](#claude-code), [Codex CLI](#codex-cli), [Codex App](#codex-app), [Factory Droid](#factory-droid), [Gemini CLI](#gemini-cli), [OpenCode](#opencode), [Cursor](#cursor), [GitHub Copilot CLI](#github-copilot-cli).
+为你的代理赋予小明技能加持：[Claude Code](#claude-code)、[Codex CLI](#codex-cli)、[Codex App](#codex-app)、[Factory Droid](#factory-droid)、[Gemini CLI](#gemini-cli)、[OpenCode](#opencode)、[Cursor](#cursor)、[GitHub Copilot CLI](#github-copilot-cli)。
 
-## How it works
+## 工作原理
 
-It starts from the moment you fire up your coding agent. As soon as it sees that you're building something, it *doesn't* just jump into trying to write code. Instead, it steps back and asks you what you're really trying to do. 
+从小伙伴启动编码代理的那一刻起，它就开始发挥作用。一旦代理察觉到你想要构建某些东西，它**不会**直接冲进代码编写中。相反，它会退后一步，向你询问你真正想要实现的目标。
 
-Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest. 
+当它从对话中提炼出设计规约（spec）后，会以足够简短、便于阅读和消化的段落逐步展示给你确认。
 
-After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY. 
+在你批准了设计之后，你的代理会制定一份详尽的实施计划。这份计划清晰明确，甚至能让一个充满热情、缺乏品味、没有判断力、不了解项目背景且反感写测试的初级工程师轻松遵循。它极力强调真实的红/绿测试驱动开发（TDD）、YAGNI（你不需要它）原则和 DRY（不要重复自己）原则。
 
-Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.
+接着，一旦你下达“开始（go）”指令，它就会启动**子代理驱动开发（subagent-driven-development）**流程。代理会依次处理每一个工程任务，检查并评审其产出，然后继续向前推进。让 Claude 在不偏离你们共同制定的计划的前提下，自主工作几个小时而无需人类干预，是完全正常的。
 
-There's a bunch more to it, but that's the core of the system. And because the skills trigger automatically, you don't need to do anything special. Your coding agent just has Superpowers.
+这个系统还有很多其他细节，但这正是其核心所在。由于这些技能是自动触发的，你无需进行任何特殊操作，你的编码代理自然就拥有了小明（Xiaoming）的能力。
 
+## 赞助项目
 
-## Sponsorship
+如果小明 (Xiaoming) 确实帮助你完成了能够带来收益的项目，且你愿意支持的话，非常感激你能考虑 [赞助我的开源工作](https://github.com/sponsors/obra)。
 
-If Superpowers has helped you do stuff that makes money and you are so inclined, I'd greatly appreciate it if you'd consider [sponsoring my opensource work](https://github.com/sponsors/obra).
-
-Thanks! 
+感谢！
 
 - Jesse
 
+## 安装指南
 
-## Installation
-
-Installation differs by harness. If you use more than one, install Superpowers separately for each one.
+不同的集成平台（harness）安装方式有所不同。如果你使用多个平台，请为每个平台分别安装小明 (Xiaoming)。
 
 ### Claude Code
 
-Superpowers is available via the [official Claude plugin marketplace](https://claude.com/plugins/superpowers)
+小明可直接在官方 Claude 插件市场或小明专用插件市场中获取。
 
-#### Official Marketplace
+#### 官方市场安装
 
-- Install the plugin from Anthropic's official marketplace:
+- 从 Anthropic 的官方插件市场安装插件：
 
   ```bash
-  /plugin install superpowers@claude-plugins-official
+  /plugin install xiaoming@claude-plugins-official
   ```
 
-#### Superpowers Marketplace
+#### 小明插件市场安装
 
-The Superpowers marketplace provides Superpowers and some other related plugins for Claude Code.
+小明插件市场提供了小明以及其他一些为 Claude Code 设计的相关插件。
 
-- Register the marketplace:
+- 注册插件市场：
 
   ```bash
-  /plugin marketplace add obra/superpowers-marketplace
+  /plugin marketplace add obra/xiaoming-marketplace
   ```
 
-- Install the plugin from this marketplace:
+- 从该市场安装插件：
 
   ```bash
-  /plugin install superpowers@superpowers-marketplace
+  /plugin install xiaoming@xiaoming-marketplace
   ```
 
 ### Codex CLI
 
-Superpowers is available via the [official Codex plugin marketplace](https://github.com/openai/plugins).
+小明可在 [Codex 官方插件市场](https://github.com/openai/plugins) 中获取。
 
-- Open the plugin search interface:
+- 打开插件搜索界面：
 
   ```bash
   /plugins
   ```
 
-- Search for Superpowers:
+- 搜索并选择小明：
 
   ```bash
-  superpowers
+  xiaoming
   ```
 
-- Select `Install Plugin`.
+- 选择 `Install Plugin`（安装插件）。
 
 ### Codex App
 
-Superpowers is available via the [official Codex plugin marketplace](https://github.com/openai/plugins).
+小明可在 [Codex 官方插件市场](https://github.com/openai/plugins) 中获取。
 
-- In the Codex app, click on Plugins in the sidebar.
-- You should see `Superpowers` in the Coding section.
-- Click the `+` next to Superpowers and follow the prompts.
+- 在 Codex 应用程序中，点击侧边栏的“Plugins”。
+- 你应该能在“Coding”部分看到 `Xiaoming`。
+- 点击 `Xiaoming` 旁的 `+` 号并根据提示完成安装。
 
 ### Factory Droid
 
-- Register the marketplace:
+- 注册插件市场：
 
   ```bash
   droid plugin marketplace add https://github.com/hj1003862396/xiaoming
   ```
 
-- Install the plugin:
+- 安装插件：
 
   ```bash
-  droid plugin install superpowers@superpowers
+  droid plugin install xiaoming@xiaoming
   ```
 
 ### Gemini CLI
 
-- Install the extension:
+- 安装扩展：
 
   ```bash
   gemini extensions install https://github.com/hj1003862396/xiaoming
   ```
 
-- Update later:
+- 后续更新：
 
   ```bash
-  gemini extensions update superpowers
+  gemini extensions update xiaoming
   ```
 
 ### OpenCode
 
-OpenCode uses its own plugin install; install Superpowers separately even if you
-already use it in another harness.
+OpenCode 使用其自有的插件安装机制；即使你已经在其他集成平台中安装过，也请为 OpenCode 单独安装。
 
-- Tell OpenCode:
+- 向 OpenCode 发送指令：
 
   ```
-  Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+  获取并遵循以下链接中的安装说明：https://raw.githubusercontent.com/hj1003862396/xiaoming/refs/heads/main/.opencode/INSTALL.md
   ```
 
-- Detailed docs: [docs/README.opencode.md](docs/README.opencode.md)
+- 详细文档：[docs/README.opencode.md](docs/README.opencode.md)
 
 ### Cursor
 
-- In Cursor Agent chat, install from marketplace:
+- 在 Cursor Agent 聊天中，从市场进行安装：
 
   ```text
-  /add-plugin superpowers
+  /add-plugin xiaoming
   ```
 
-- Or search for "superpowers" in the plugin marketplace.
+- 或者在插件市场中搜索 "xiaoming" 进行安装。
 
 ### GitHub Copilot CLI
 
-- Register the marketplace:
+- 注册插件市场：
 
   ```bash
-  copilot plugin marketplace add obra/superpowers-marketplace
+  copilot plugin marketplace add obra/xiaoming-marketplace
   ```
 
-- Install the plugin:
+- 安装插件：
 
   ```bash
-  copilot plugin install superpowers@superpowers-marketplace
+  copilot plugin install xiaoming@xiaoming-marketplace
   ```
 
-## The Basic Workflow
+## 基础开发工作流
 
-1. **brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.
+1. **xiaoming**（原 `brainstorming`） - 在编写代码前激活。通过 Socratic 提问精炼粗糙的想法，探索替代方案，并分节展示设计方案进行确认。保存设计规约文档。
 
-2. **using-git-worktrees** - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
+2. **using-git-worktrees** - 在设计通过批准后激活。在新的分支上创建隔离的 git 工作区，运行项目初始化，验证测试的干净基线。
 
-3. **writing-plans** - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.
+3. **writing-plans** - 在获得批准的设计方案后激活。将任务分解为大小适中的子任务（每项约 2-5 分钟）。每个任务都包含准确的文件路径、完整的代码和验证步骤。
 
-4. **subagent-driven-development** or **executing-plans** - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.
+4. **subagent-driven-development** 或 **executing-plans** - 在制定好计划后激活。针对每个任务分派全新的子代理并进行双阶段审查（先审查设计规约合规性，再审查代码质量），或分批执行并进行人工确认。
 
-5. **test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
+5. **test-driven-development** - 在实施开发期间激活。强制执行 **红-绿-重构** 循环：编写失败测试、查看失败原因、编写最少代码使测试通过、提交。删除在测试前编写的业务代码。
 
-6. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
+6. **requesting-code-review** - 在任务之间激活。根据计划进行审查，按严重程度报告问题。严重问题将阻止后续推进。
 
-7. **finishing-a-development-branch** - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
+7. **finishing-a-development-branch** - 在任务完成后激活。验证测试，提供集成选项（Merge、PR、保留或废弃），清理 git 工作区。
 
-**The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
+**代理在进行任何任务前都会检查相关的技能。** 这些是必须遵守的强制性工作流，而非仅供参考的建议。
 
-## What's Inside
+## 功能构成 (What's Inside)
 
-### Skills Library
+### 技能库 (Skills Library)
 
-**Testing**
-- **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
+**测试 (Testing)**
+- **test-driven-development** - 红-绿-重构循环（包含测试反模式参考）
 
-**Debugging**
-- **systematic-debugging** - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)
-- **verification-before-completion** - Ensure it's actually fixed
+**调试 (Debugging)**
+- **systematic-debugging** - 4 阶段根因分析流程（包括根因追溯、深度防御和基于条件的等待技术）
+- **verification-before-completion** - 确保 bug 确实已被修复
 
-**Collaboration** 
-- **brainstorming** - Socratic design refinement
-- **writing-plans** - Detailed implementation plans
-- **executing-plans** - Batch execution with checkpoints
-- **dispatching-parallel-agents** - Concurrent subagent workflows
-- **requesting-code-review** - Pre-review checklist
-- **receiving-code-review** - Responding to feedback
-- **using-git-worktrees** - Parallel development branches
-- **finishing-a-development-branch** - Merge/PR decision workflow
-- **subagent-driven-development** - Fast iteration with two-stage review (spec compliance, then code quality)
+**协作模式 (Collaboration)** 
+- **xiaoming** - 类似苏格拉底式的设计方案精炼
+- **writing-plans** - 详细的开发实施计划
+- **executing-plans** - 带有检查点的分批执行
+- **dispatching-parallel-agents** - 并发的子代理工作流
+- **requesting-code-review** - 提交评审前的核对清单
+- **receiving-code-review** - 响应审查反馈
+- **using-git-worktrees** - 并行开发分支隔离
+- **finishing-a-development-branch** - 合并与 PR 决策工作流
+- **subagent-driven-development** - 带有双阶段评审（规约合规和代码质量）的快速迭代流程
 
-**Meta**
-- **writing-skills** - Create new skills following best practices (includes testing methodology)
-- **using-superpowers** - Introduction to the skills system
+**元技能 (Meta)**
+- **writing-skills** - 遵循最佳实践创建新技能（包括测试方法论）
+- **using-xiaoming-bootstrap** - 引导了解小明技能系统
 
-## Philosophy
+## 核心开发哲学
 
-- **Test-Driven Development** - Write tests first, always
-- **Systematic over ad-hoc** - Process over guessing
-- **Complexity reduction** - Simplicity as primary goal
-- **Evidence over claims** - Verify before declaring success
+- **测试驱动开发 (TDD)** - 永远且必须先编写测试
+- **系统化强于随机尝试** - 遵循流程比猜测和运气更靠谱
+- **追求极简，降低复杂度** - 简单性是架构的首要目标
+- **事实与证据强于主观宣称** - 在宣称成功前必须运行命令进行验证
 
-Read [the original release announcement](https://blog.fsck.com/2025/10/09/superpowers/).
+阅读 [最初的发布声明（英文）](https://blog.fsck.com/2025/10/09/superpowers/)。
 
-## Contributing
+## 贡献指南
 
-The general contribution process for Superpowers is below. Keep in mind that we don't generally accept contributions of new skills and that any updates to skills must work across all of the coding agents we support.
+小明 (Xiaoming) 的常规贡献流程如下。请记住，我们通常不接受新技能的贡献，并且技能的任何更新都必须兼容我们支持的所有编码代理平台。
 
-1. Fork the repository
-2. Switch to the 'dev' branch
-3. Create a branch for your work
-4. Follow the `writing-skills` skill for creating and testing new and modified skills
-5. Submit a PR, being sure to fill in the pull request template.
+1. Fork 本仓库
+2. 切换到 `dev` 分支
+3. 为你的修改创建分支
+4. 遵循 `writing-skills` 技能来开发和测试新技能或修改后的技能
+5. 提交 PR，并确保完整填写拉取请求模板。
 
-See `skills/writing-skills/SKILL.md` for the complete guide.
+查看 `skills/writing-skills/SKILL.md` 了解完整的指引。
 
-## Updating
+## 更新机制
 
-Superpowers updates are somewhat coding-agent dependent, but are often automatic.
+小明 (Xiaoming) 的更新在一定程度上取决于编码代理平台本身，但通常是自动更新的。
 
-## License
+## 开源协议
 
-MIT License - see LICENSE file for details
+MIT 协议 - 详情请参阅 LICENSE 文件。
 
-## Community
+## 社区交流
 
-Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of the folks at [Prime Radiant](https://primeradiant.com).
+小明 (Xiaoming) 由 [Jesse Vincent](https://blog.fsck.com) 及 [Prime Radiant](https://primeradiant.com) 的其他伙伴共同打造。
 
-- **Discord**: [Join us](https://discord.gg/35wsABTejz) for community support, questions, and sharing what you're building with Superpowers
-- **Issues**: https://github.com/hj1003862396/xiaoming/issues
-- **Release announcements**: [Sign up](https://primeradiant.com/superpowers/) to get notified about new versions
+- **Discord**: [加入我们](https://discord.gg/35wsABTejz) 以获取社区支持、交流问题，并分享你用小明构建的成果。
+- **问题反馈 (Issues)**: https://github.com/hj1003862396/xiaoming/issues
+- **发布通知**: [订阅](https://primeradiant.com/superpowers/) 接收新版本的通知。
