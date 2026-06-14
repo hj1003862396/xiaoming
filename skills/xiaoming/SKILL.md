@@ -1,6 +1,6 @@
 ---
-name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+name: xiaoming
+description: "在进行任何创造性工作（如创建特性、构建组件、添加功能或修改行为）之前，您必须使用此技能。在实施前探索用户意图、需求和设计。"
 ---
 
 # Brainstorming Ideas Into Designs

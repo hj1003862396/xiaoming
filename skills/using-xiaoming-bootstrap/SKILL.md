@@ -1,6 +1,6 @@
 ---
 name: using-xiaoming-bootstrap
-description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
+description: "在启动任何对话时使用 - 确定如何查找和使用技能，在进行任何回复（包括澄清问题）之前，都必须调用 Skill 工具"
 ---
 
 <SUBAGENT-STOP>

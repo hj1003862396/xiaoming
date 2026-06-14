@@ -1,6 +1,6 @@
 ---
 name: receiving-code-review
-description: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation
+description: "在收到代码审查反馈并准备实施建议前使用，特别是如果反馈不明确或在技术上令人存疑 - 这需要技术严谨性和验证，而不是形式上的同意或盲目执行"
 ---
 
 # Code Review Reception
