@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add full superpowers support for OpenCode.ai with a native JavaScript plugin that shares core functionality with the existing Codex implementation.
+**Goal:** Add full xiaoming support for OpenCode.ai with a native JavaScript plugin that shares core functionality with the existing Codex implementation.
 
 **Architecture:** Extract common skill discovery/parsing logic into `lib/skills-core.js`, refactor Codex to use it, then build OpenCode plugin using their native plugin API with custom tools and session hooks.
 
@@ -16,7 +16,7 @@
 
 **Files:**
 - Create: `lib/skills-core.js`
-- Reference: `.codex/superpowers-codex` (lines 40-74)
+- Reference: `.codex/xiaoming-codex` (lines 40-74)
 
 **Step 1: Create lib/skills-core.js with extractFrontmatter function**
 
@@ -98,7 +98,7 @@ git commit -m "feat: create shared skills core module with frontmatter parser"
 
 **Files:**
 - Modify: `lib/skills-core.js`
-- Reference: `.codex/superpowers-codex` (lines 97-136)
+- Reference: `.codex/xiaoming-codex` (lines 97-136)
 
 **Step 1: Add findSkillsInDir function to skills-core.js**
 
@@ -109,7 +109,7 @@ Add before `module.exports`:
  * Find all SKILL.md files in a directory recursively.
  *
  * @param {string} dir - Directory to search
- * @param {string} sourceType - 'personal' or 'superpowers' for namespacing
+ * @param {string} sourceType - 'personal' or 'xiaoming' for namespacing
  * @param {number} maxDepth - Maximum recursion depth (default: 3)
  * @returns {Array<{path: string, name: string, description: string, sourceType: string}>}
  */
@@ -180,7 +180,7 @@ git commit -m "feat: add skill discovery function to core module"
 
 **Files:**
 - Modify: `lib/skills-core.js`
-- Reference: `.codex/superpowers-codex` (lines 212-280)
+- Reference: `.codex/xiaoming-codex` (lines 212-280)
 
 **Step 1: Add resolveSkillPath function**
 
@@ -189,20 +189,20 @@ Add before `module.exports`:
 ```javascript
 /**
  * Resolve a skill name to its file path, handling shadowing
- * (personal skills override superpowers skills).
+ * (personal skills override xiaoming skills).
  *
  * @param {string} skillName - Name like "xiaoming:xiaoming" or "my-skill"
- * @param {string} superpowersDir - Path to superpowers skills directory
+ * @param {string} xiaomingDir - Path to xiaoming skills directory
  * @param {string} personalDir - Path to personal skills directory
  * @returns {{skillFile: string, sourceType: string, skillPath: string} | null}
  */
-function resolveSkillPath(skillName, superpowersDir, personalDir) {
+function resolveSkillPath(skillName, xiaomingDir, personalDir) {
     // Strip xiaoming: prefix if present
-    const forceSuperpowers = skillName.startsWith('xiaoming:');
-    const actualSkillName = forceSuperpowers ? skillName.replace(/^xiaoming:/, '') : skillName;
+    const forceXiaoming = skillName.startsWith('xiaoming:');
+    const actualSkillName = forceXiaoming ? skillName.replace(/^xiaoming:/, '') : skillName;
 
     // Try personal skills first (unless explicitly xiaoming:)
-    if (!forceSuperpowers && personalDir) {
+    if (!forceXiaoming && personalDir) {
         const personalPath = path.join(personalDir, actualSkillName);
         const personalSkillFile = path.join(personalPath, 'SKILL.md');
         if (fs.existsSync(personalSkillFile)) {
@@ -214,14 +214,14 @@ function resolveSkillPath(skillName, superpowersDir, personalDir) {
         }
     }
 
-    // Try superpowers skills
-    if (superpowersDir) {
-        const superpowersPath = path.join(superpowersDir, actualSkillName);
-        const superpowersSkillFile = path.join(superpowersPath, 'SKILL.md');
-        if (fs.existsSync(superpowersSkillFile)) {
+    // Try xiaoming skills
+    if (xiaomingDir) {
+        const xiaomingPath = path.join(xiaomingDir, actualSkillName);
+        const xiaomingSkillFile = path.join(xiaomingPath, 'SKILL.md');
+        if (fs.existsSync(xiaomingSkillFile)) {
             return {
-                skillFile: superpowersSkillFile,
-                sourceType: 'superpowers',
+                skillFile: xiaomingSkillFile,
+                sourceType: 'xiaoming',
                 skillPath: actualSkillName
             };
         }
@@ -259,7 +259,7 @@ git commit -m "feat: add skill path resolution with shadowing support"
 
 **Files:**
 - Modify: `lib/skills-core.js`
-- Reference: `.codex/superpowers-codex` (lines 16-38)
+- Reference: `.codex/xiaoming-codex` (lines 16-38)
 
 **Step 1: Add checkForUpdates function**
 
@@ -333,7 +333,7 @@ git commit -m "feat: add git update checking to core module"
 ### Task 5: Update Codex to Import Shared Core
 
 **Files:**
-- Modify: `.codex/superpowers-codex` (add import at top)
+- Modify: `.codex/xiaoming-codex` (add import at top)
 
 **Step 1: Add import statement**
 
@@ -345,13 +345,13 @@ const skillsCore = require('../lib/skills-core');
 
 **Step 2: Verify syntax**
 
-Run: `node -c .codex/superpowers-codex`
+Run: `node -c .codex/xiaoming-codex`
 Expected: No output
 
 **Step 3: Commit**
 
 ```bash
-git add .codex/superpowers-codex
+git add .codex/xiaoming-codex
 git commit -m "refactor: import shared skills core in codex"
 ```
 
@@ -360,7 +360,7 @@ git commit -m "refactor: import shared skills core in codex"
 ### Task 6: Replace extractFrontmatter with Core Version
 
 **Files:**
-- Modify: `.codex/superpowers-codex` (lines 40-74)
+- Modify: `.codex/xiaoming-codex` (lines 40-74)
 
 **Step 1: Remove local extractFrontmatter function**
 
@@ -374,13 +374,13 @@ Affected lines approximately: 90, 310
 
 **Step 3: Verify script still works**
 
-Run: `.codex/superpowers-codex find-skills | head -20`
+Run: `.codex/xiaoming-codex find-skills | head -20`
 Expected: Shows list of skills
 
 **Step 4: Commit**
 
 ```bash
-git add .codex/superpowers-codex
+git add .codex/xiaoming-codex
 git commit -m "refactor: use shared extractFrontmatter in codex"
 ```
 
@@ -389,7 +389,7 @@ git commit -m "refactor: use shared extractFrontmatter in codex"
 ### Task 7: Replace findSkillsInDir with Core Version
 
 **Files:**
-- Modify: `.codex/superpowers-codex` (lines 97-136, approximately)
+- Modify: `.codex/xiaoming-codex` (lines 97-136, approximately)
 
 **Step 1: Remove local findSkillsInDir function**
 
@@ -401,13 +401,13 @@ Replace calls from `findSkillsInDir(` to `skillsCore.findSkillsInDir(`
 
 **Step 3: Verify script still works**
 
-Run: `.codex/superpowers-codex find-skills | head -20`
+Run: `.codex/xiaoming-codex find-skills | head -20`
 Expected: Shows list of skills
 
 **Step 4: Commit**
 
 ```bash
-git add .codex/superpowers-codex
+git add .codex/xiaoming-codex
 git commit -m "refactor: use shared findSkillsInDir in codex"
 ```
 
@@ -416,7 +416,7 @@ git commit -m "refactor: use shared findSkillsInDir in codex"
 ### Task 8: Replace checkForUpdates with Core Version
 
 **Files:**
-- Modify: `.codex/superpowers-codex` (lines 16-38, approximately)
+- Modify: `.codex/xiaoming-codex` (lines 16-38, approximately)
 
 **Step 1: Remove local checkForUpdates function**
 
@@ -428,13 +428,13 @@ Replace calls from `checkForUpdates(` to `skillsCore.checkForUpdates(`
 
 **Step 3: Verify script still works**
 
-Run: `.codex/superpowers-codex bootstrap | head -50`
+Run: `.codex/xiaoming-codex bootstrap | head -50`
 Expected: Shows bootstrap content
 
 **Step 4: Commit**
 
 ```bash
-git add .codex/superpowers-codex
+git add .codex/xiaoming-codex
 git commit -m "refactor: use shared checkForUpdates in codex"
 ```
 
@@ -445,7 +445,7 @@ git commit -m "refactor: use shared checkForUpdates in codex"
 ### Task 9: Create OpenCode Plugin Directory Structure
 
 **Files:**
-- Create: `.opencode/plugin/superpowers.js`
+- Create: `.opencode/plugin/xiaoming.js`
 
 **Step 1: Create directory**
 
@@ -457,7 +457,7 @@ Run: `mkdir -p .opencode/plugin`
 #!/usr/bin/env node
 
 /**
- * Superpowers plugin for OpenCode.ai
+ * Xiaoming plugin for OpenCode.ai
  *
  * Provides custom tools for loading and discovering skills,
  * with automatic bootstrap on session start.
@@ -469,13 +469,13 @@ const fs = require('fs');
 const os = require('os');
 
 const homeDir = os.homedir();
-const superpowersSkillsDir = path.join(homeDir, '.config/opencode/superpowers/skills');
+const xiaomingSkillsDir = path.join(homeDir, '.config/opencode/xiaoming/skills');
 const personalSkillsDir = path.join(homeDir, '.config/opencode/skills');
 
 /**
  * OpenCode plugin entry point
  */
-export const SuperpowersPlugin = async ({ project, client, $, directory, worktree }) => {
+export const XiaomingPlugin = async ({ project, client, $, directory, worktree }) => {
   return {
     // Custom tools and hooks will go here
   };
@@ -484,13 +484,13 @@ export const SuperpowersPlugin = async ({ project, client, $, directory, worktre
 
 **Step 3: Verify file was created**
 
-Run: `ls -l .opencode/plugin/superpowers.js`
+Run: `ls -l .opencode/plugin/xiaoming.js`
 Expected: File exists
 
 **Step 4: Commit**
 
 ```bash
-git add .opencode/plugin/superpowers.js
+git add .opencode/plugin/xiaoming.js
 git commit -m "feat: create opencode plugin scaffold"
 ```
 
@@ -499,14 +499,14 @@ git commit -m "feat: create opencode plugin scaffold"
 ### Task 10: Implement use_skill Tool
 
 **Files:**
-- Modify: `.opencode/plugin/superpowers.js`
+- Modify: `.opencode/plugin/xiaoming.js`
 
 **Step 1: Add use_skill tool implementation**
 
 Replace the plugin return statement with:
 
 ```javascript
-export const SuperpowersPlugin = async ({ project, client, $, directory, worktree }) => {
+export const XiaomingPlugin = async ({ project, client, $, directory, worktree }) => {
   // Import zod for schema validation
   const { z } = await import('zod');
 
@@ -519,10 +519,10 @@ export const SuperpowersPlugin = async ({ project, client, $, directory, worktre
           skill_name: z.string().describe('Name of the skill to load (e.g., "xiaoming:xiaoming" or "my-custom-skill")')
         }),
         execute: async ({ skill_name }) => {
-          // Resolve skill path (handles shadowing: personal > superpowers)
+          // Resolve skill path (handles shadowing: personal > xiaoming)
           const resolved = skillsCore.resolveSkillPath(
             skill_name,
-            superpowersSkillsDir,
+            xiaomingSkillsDir,
             personalSkillsDir
           );
 
@@ -574,13 +574,13 @@ ${content}`;
 
 **Step 2: Verify syntax**
 
-Run: `node -c .opencode/plugin/superpowers.js`
+Run: `node -c .opencode/plugin/xiaoming.js`
 Expected: No output
 
 **Step 3: Commit**
 
 ```bash
-git add .opencode/plugin/superpowers.js
+git add .opencode/plugin/xiaoming.js
 git commit -m "feat: implement use_skill tool for opencode"
 ```
 
@@ -589,7 +589,7 @@ git commit -m "feat: implement use_skill tool for opencode"
 ### Task 11: Implement find_skills Tool
 
 **Files:**
-- Modify: `.opencode/plugin/superpowers.js`
+- Modify: `.opencode/plugin/xiaoming.js`
 
 **Step 1: Add find_skills tool to tools array**
 
@@ -598,13 +598,13 @@ Add after the use_skill tool definition, before closing the tools array:
 ```javascript
       {
         name: 'find_skills',
-        description: 'List all available skills in the superpowers and personal skill libraries.',
+        description: 'List all available skills in the xiaoming and personal skill libraries.',
         schema: z.object({}),
         execute: async () => {
           // Find skills in both directories
-          const superpowersSkills = skillsCore.findSkillsInDir(
-            superpowersSkillsDir,
-            'superpowers',
+          const xiaomingSkills = skillsCore.findSkillsInDir(
+            xiaomingSkillsDir,
+            'xiaoming',
             3
           );
           const personalSkills = skillsCore.findSkillsInDir(
@@ -614,10 +614,10 @@ Add after the use_skill tool definition, before closing the tools array:
           );
 
           // Combine and format skills list
-          const allSkills = [...personalSkills, ...superpowersSkills];
+          const allSkills = [...personalSkills, ...xiaomingSkills];
 
           if (allSkills.length === 0) {
-            return 'No skills found. Install superpowers skills to ~/.config/opencode/superpowers/skills/';
+            return 'No skills found. Install xiaoming skills to ~/.config/opencode/xiaoming/skills/';
           }
 
           let output = 'Available skills:\n\n';
@@ -640,13 +640,13 @@ Add after the use_skill tool definition, before closing the tools array:
 
 **Step 2: Verify syntax**
 
-Run: `node -c .opencode/plugin/superpowers.js`
+Run: `node -c .opencode/plugin/xiaoming.js`
 Expected: No output
 
 **Step 3: Commit**
 
 ```bash
-git add .opencode/plugin/superpowers.js
+git add .opencode/plugin/xiaoming.js
 git commit -m "feat: implement find_skills tool for opencode"
 ```
 
@@ -655,7 +655,7 @@ git commit -m "feat: implement find_skills tool for opencode"
 ### Task 12: Implement Session Start Hook
 
 **Files:**
-- Modify: `.opencode/plugin/superpowers.js`
+- Modify: `.opencode/plugin/xiaoming.js`
 
 **Step 1: Add session.started hook**
 
@@ -663,16 +663,16 @@ After the tools array, add:
 
 ```javascript
     'session.started': async () => {
-      // Read using-superpowers skill content
-      const usingSuperpowersPath = skillsCore.resolveSkillPath(
-        'using-superpowers',
-        superpowersSkillsDir,
+      // Read using-xiaoming-bootstrap skill content
+      const usingXiaomingPath = skillsCore.resolveSkillPath(
+        'using-xiaoming-bootstrap',
+        xiaomingSkillsDir,
         personalSkillsDir
       );
 
-      let usingSuperpowersContent = '';
-      if (usingSuperpowersPath) {
-        const fullContent = fs.readFileSync(usingSuperpowersPath.skillFile, 'utf8');
+      let usingXiaomingContent = '';
+      if (usingXiaomingPath) {
+        const fullContent = fs.readFileSync(usingXiaomingPath.skillFile, 'utf8');
         // Strip frontmatter
         const lines = fullContent.split('\n');
         let inFrontmatter = false;
@@ -694,7 +694,7 @@ After the tools array, add:
           }
         }
 
-        usingSuperpowersContent = contentLines.join('\n').trim();
+        usingXiaomingContent = contentLines.join('\n').trim();
       }
 
       // Tool mapping instructions
@@ -712,28 +712,28 @@ When skills reference tools you don't have, substitute OpenCode equivalents:
 - Utilities and helpers specific to that skill
 
 **Skills naming:**
-- Superpowers skills: \`xiaoming:skill-name\` (from ~/.config/opencode/superpowers/skills/)
+- Xiaoming skills: \`xiaoming:skill-name\` (from ~/.config/opencode/xiaoming/skills/)
 - Personal skills: \`skill-name\` (from ~/.config/opencode/skills/)
-- Personal skills override superpowers skills when names match
+- Personal skills override xiaoming skills when names match
 `;
 
       // Check for updates (non-blocking)
       const hasUpdates = skillsCore.checkForUpdates(
-        path.join(homeDir, '.config/opencode/superpowers')
+        path.join(homeDir, '.config/opencode/xiaoming')
       );
 
       const updateNotice = hasUpdates ?
-        '\n\n⚠️ **Updates available!** Run `cd ~/.config/opencode/superpowers && git pull` to update superpowers.' :
+        '\n\n⚠️ **Updates available!** Run `cd ~/.config/opencode/xiaoming && git pull` to update xiaoming.' :
         '';
 
       // Return context to inject into session
       return {
         context: `<EXTREMELY_IMPORTANT>
-You have superpowers.
+You have xiaoming.
 
 **Below is the full content of your 'xiaoming:using-xiaoming-bootstrap' skill - your introduction to using skills. For all other skills, use the 'use_skill' tool:**
 
-${usingSuperpowersContent}
+${usingXiaomingContent}
 
 ${toolMapping}${updateNotice}
 </EXTREMELY_IMPORTANT>`
@@ -743,13 +743,13 @@ ${toolMapping}${updateNotice}
 
 **Step 2: Verify syntax**
 
-Run: `node -c .opencode/plugin/superpowers.js`
+Run: `node -c .opencode/plugin/xiaoming.js`
 Expected: No output
 
 **Step 3: Commit**
 
 ```bash
-git add .opencode/plugin/superpowers.js
+git add .opencode/plugin/xiaoming.js
 git commit -m "feat: implement session.started hook for opencode"
 ```
 
@@ -765,7 +765,7 @@ git commit -m "feat: implement session.started hook for opencode"
 **Step 1: Create installation guide**
 
 ```markdown
-# Installing Superpowers for OpenCode
+# Installing Xiaoming for OpenCode
 
 ## Prerequisites
 
@@ -775,27 +775,27 @@ git commit -m "feat: implement session.started hook for opencode"
 
 ## Installation Steps
 
-### 1. Install Superpowers Skills
+### 1. Install Xiaoming Skills
 
 ```bash
-# Clone superpowers skills to OpenCode config directory
-mkdir -p ~/.config/opencode/superpowers
-git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
+# Clone xiaoming skills to OpenCode config directory
+mkdir -p ~/.config/opencode/xiaoming
+git clone https://github.com/obra/xiaoming.git ~/.config/opencode/xiaoming
 ```
 
 ### 2. Install the Plugin
 
-The plugin is included in the superpowers repository you just cloned.
+The plugin is included in the xiaoming repository you just cloned.
 
 OpenCode will automatically discover it from:
-- `~/.config/opencode/superpowers/.opencode/plugin/superpowers.js`
+- `~/.config/opencode/xiaoming/.opencode/plugin/xiaoming.js`
 
 Or you can link it to the project-local plugin directory:
 
 ```bash
 # In your OpenCode project
 mkdir -p .opencode/plugin
-ln -s ~/.config/opencode/superpowers/.opencode/plugin/superpowers.js .opencode/plugin/superpowers.js
+ln -s ~/.config/opencode/xiaoming/.opencode/plugin/xiaoming.js .opencode/plugin/xiaoming.js
 ```
 
 ### 3. Restart OpenCode
@@ -803,7 +803,7 @@ ln -s ~/.config/opencode/superpowers/.opencode/plugin/superpowers.js .opencode/p
 Restart OpenCode to load the plugin. On the next session, you should see:
 
 ```
-You have superpowers.
+You have xiaoming.
 ```
 
 ## Usage
@@ -845,12 +845,12 @@ description: Use when [condition] - [what it does]
 [Your skill content here]
 ```
 
-Personal skills override superpowers skills with the same name.
+Personal skills override xiaoming skills with the same name.
 
 ## Updating
 
 ```bash
-cd ~/.config/opencode/superpowers
+cd ~/.config/opencode/xiaoming
 git pull
 ```
 
@@ -858,13 +858,13 @@ git pull
 
 ### Plugin not loading
 
-1. Check plugin file exists: `ls ~/.config/opencode/superpowers/.opencode/plugin/superpowers.js`
+1. Check plugin file exists: `ls ~/.config/opencode/xiaoming/.opencode/plugin/xiaoming.js`
 2. Check OpenCode logs for errors
 3. Verify Node.js is installed: `node --version`
 
 ### Skills not found
 
-1. Verify skills directory exists: `ls ~/.config/opencode/superpowers/skills`
+1. Verify skills directory exists: `ls ~/.config/opencode/xiaoming/skills`
 2. Use `find_skills` tool to see what's discovered
 3. Check file structure: each skill should have a `SKILL.md` file
 
@@ -878,8 +878,8 @@ When a skill references a Claude Code tool you don't have:
 
 ## Getting Help
 
-- Report issues: https://github.com/obra/superpowers/issues
-- Documentation: https://github.com/obra/superpowers
+- Report issues: https://github.com/obra/xiaoming/issues
+- Documentation: https://github.com/obra/xiaoming
 ```
 
 **Step 2: Verify file created**
@@ -908,7 +908,7 @@ Find the section about supported platforms (search for "Codex" in the file), and
 ```markdown
 ### OpenCode
 
-Superpowers works with [OpenCode.ai](https://opencode.ai) through a native JavaScript plugin.
+Xiaoming works with [OpenCode.ai](https://opencode.ai) through a native JavaScript plugin.
 
 **Installation:** See [.opencode/INSTALL.md](.opencode/INSTALL.md)
 
@@ -982,21 +982,21 @@ git commit -m "docs: add opencode support to release notes"
 ### Task 16: Test Codex Still Works
 
 **Files:**
-- Test: `.codex/superpowers-codex`
+- Test: `.codex/xiaoming-codex`
 
 **Step 1: Test find-skills command**
 
-Run: `.codex/superpowers-codex find-skills | head -20`
+Run: `.codex/xiaoming-codex find-skills | head -20`
 Expected: Shows list of skills with names and descriptions
 
 **Step 2: Test use-skill command**
 
-Run: `.codex/superpowers-codex use-skill xiaoming:xiaoming | head -20`
+Run: `.codex/xiaoming-codex use-skill xiaoming:xiaoming | head -20`
 Expected: Shows brainstorming skill content
 
 **Step 3: Test bootstrap command**
 
-Run: `.codex/superpowers-codex bootstrap | head -30`
+Run: `.codex/xiaoming-codex bootstrap | head -30`
 Expected: Shows bootstrap content with instructions
 
 **Step 4: If all tests pass, record success**
@@ -1015,7 +1015,7 @@ No commit needed - this is verification only.
 Run:
 ```bash
 ls -l lib/skills-core.js
-ls -l .opencode/plugin/superpowers.js
+ls -l .opencode/plugin/xiaoming.js
 ls -l .opencode/INSTALL.md
 ```
 
@@ -1029,7 +1029,7 @@ Expected:
 .opencode/
 ├── INSTALL.md
 └── plugin/
-    └── superpowers.js
+    └── xiaoming.js
 ```
 
 **Step 3: If structure correct, proceed**
@@ -1057,8 +1057,8 @@ Expected: Shows all commits from this implementation
 
 Create a completion summary showing:
 - Total commits made
-- Files created: `lib/skills-core.js`, `.opencode/plugin/superpowers.js`, `.opencode/INSTALL.md`
-- Files modified: `.codex/superpowers-codex`, `README.md`, `RELEASE-NOTES.md`
+- Files created: `lib/skills-core.js`, `.opencode/plugin/xiaoming.js`, `.opencode/INSTALL.md`
+- Files modified: `.codex/xiaoming-codex`, `README.md`, `RELEASE-NOTES.md`
 - Testing performed: Codex commands verified
 - Ready for: Testing with actual OpenCode installation
 
@@ -1086,9 +1086,9 @@ These steps require OpenCode to be installed and are not part of the automated i
 ## Success Criteria
 
 - [ ] `lib/skills-core.js` created with all core functions
-- [ ] `.codex/superpowers-codex` refactored to use shared core
+- [ ] `.codex/xiaoming-codex` refactored to use shared core
 - [ ] Codex commands still work (find-skills, use-skill, bootstrap)
-- [ ] `.opencode/plugin/superpowers.js` created with tools and hooks
+- [ ] `.opencode/plugin/xiaoming.js` created with tools and hooks
 - [ ] Installation guide created
 - [ ] README and RELEASE-NOTES updated
 - [ ] All changes committed

@@ -20,14 +20,14 @@ trap cleanup_test_env EXIT
 # Create same skill "priority-test" in all three locations with different markers
 echo "Setting up priority test fixtures..."
 
-# 1. Create in superpowers location (lowest priority)
+# 1. Create in xiaoming location (lowest priority)
 mkdir -p "$SUPERPOWERS_SKILLS_DIR/priority-test"
 cat > "$SUPERPOWERS_SKILLS_DIR/priority-test/SKILL.md" <<'EOF'
 ---
 name: priority-test
-description: Superpowers version of priority test skill
+description: Xiaoming version of priority test skill
 ---
-# Priority Test Skill (Superpowers Version)
+# Priority Test Skill (Xiaoming Version)
 
 This is the SUPERPOWERS version of the priority test skill.
 
@@ -69,9 +69,9 @@ echo ""
 echo "Test 1: Verifying test fixtures..."
 
 if [ -f "$SUPERPOWERS_SKILLS_DIR/priority-test/SKILL.md" ]; then
-    echo "  [PASS] Superpowers version exists"
+    echo "  [PASS] Xiaoming version exists"
 else
-    echo "  [FAIL] Superpowers version missing"
+    echo "  [FAIL] Xiaoming version missing"
     exit 1
 fi
 
@@ -169,9 +169,9 @@ describe_priority_result() {
     fi
 }
 
-# Test 2: Document personal vs bundled superpowers priority
+# Test 2: Document personal vs bundled xiaoming priority
 echo ""
-echo "Test 2: Documenting personal vs superpowers priority..."
+echo "Test 2: Documenting personal vs xiaoming priority..."
 echo "  Running from outside project directory..."
 
 run_opencode output "$HOME" "Call the skill tool with name \"priority-test\". Show the exact content including any PRIORITY_MARKER text."
@@ -180,11 +180,11 @@ describe_priority_result \
     "PRIORITY_MARKER_PERSONAL_VERSION" \
     "PRIORITY_MARKER_SUPERPOWERS_VERSION" \
     "Personal version loaded for duplicate native skill name" \
-    "Current OpenCode behavior loaded bundled superpowers version instead of personal version"
+    "Current OpenCode behavior loaded bundled xiaoming version instead of personal version"
 
-# Test 3: Document project vs bundled superpowers priority
+# Test 3: Document project vs bundled xiaoming priority
 echo ""
-echo "Test 3: Documenting project vs personal/superpowers priority..."
+echo "Test 3: Documenting project vs personal/xiaoming priority..."
 echo "  Running from project directory..."
 
 run_opencode output "$TEST_HOME/test-project" "Call the skill tool with name \"priority-test\". Show the exact content including any PRIORITY_MARKER text."
@@ -193,25 +193,25 @@ describe_priority_result \
     "PRIORITY_MARKER_PROJECT_VERSION" \
     "PRIORITY_MARKER_SUPERPOWERS_VERSION" \
     "Project version loaded for duplicate native skill name" \
-    "Current OpenCode behavior loaded bundled superpowers version instead of project version"
+    "Current OpenCode behavior loaded bundled xiaoming version instead of project version"
 
-# Test 4: Test a non-colliding bundled superpowers skill is still available
+# Test 4: Test a non-colliding bundled xiaoming skill is still available
 echo ""
-echo "Test 4: Testing non-colliding superpowers skill remains available..."
+echo "Test 4: Testing non-colliding xiaoming skill remains available..."
 
-mkdir -p "$SUPERPOWERS_SKILLS_DIR/superpowers-only-test"
-cat > "$SUPERPOWERS_SKILLS_DIR/superpowers-only-test/SKILL.md" <<'EOF'
+mkdir -p "$SUPERPOWERS_SKILLS_DIR/xiaoming-only-test"
+cat > "$SUPERPOWERS_SKILLS_DIR/xiaoming-only-test/SKILL.md" <<'EOF'
 ---
-name: superpowers-only-test
-description: Superpowers-only priority test skill
+name: xiaoming-only-test
+description: Xiaoming-only priority test skill
 ---
-# Superpowers Only Test Skill
+# Xiaoming Only Test Skill
 
 PRIORITY_MARKER_SUPERPOWERS_ONLY_VERSION
 EOF
 
-run_opencode output "$TEST_HOME/test-project" "Call the skill tool with name \"superpowers-only-test\". Show the exact content including any PRIORITY_MARKER text."
-assert_contains "$output" "PRIORITY_MARKER_SUPERPOWERS_ONLY_VERSION" "Non-colliding superpowers skill is still registered"
+run_opencode output "$TEST_HOME/test-project" "Call the skill tool with name \"xiaoming-only-test\". Show the exact content including any PRIORITY_MARKER text."
+assert_contains "$output" "PRIORITY_MARKER_SUPERPOWERS_ONLY_VERSION" "Non-colliding xiaoming skill is still registered"
 
 echo ""
 echo "=== All priority tests passed ==="

@@ -6,11 +6,11 @@
 
 ## Overview
 
-Add full superpowers support for OpenCode.ai using a native OpenCode plugin architecture that shares core functionality with the existing Codex implementation.
+Add full xiaoming support for OpenCode.ai using a native OpenCode plugin architecture that shares core functionality with the existing Codex implementation.
 
 ## Background
 
-OpenCode.ai is a coding agent similar to Claude Code and Codex. Previous attempts to port superpowers to OpenCode (PR #93, PR #116) used file-copying approaches. This design takes a different approach: building a native OpenCode plugin using their JavaScript/TypeScript plugin system while sharing code with the Codex implementation.
+OpenCode.ai is a coding agent similar to Claude Code and Codex. Previous attempts to port xiaoming to OpenCode (PR #93, PR #116) used file-copying approaches. This design takes a different approach: building a native OpenCode plugin using their JavaScript/TypeScript plugin system while sharing code with the Codex implementation.
 
 ### Key Differences Between Platforms
 
@@ -34,16 +34,16 @@ OpenCode.ai is a coding agent similar to Claude Code and Codex. Previous attempt
    - Used by both Codex and OpenCode implementations
 
 2. **Platform-Specific Wrappers**
-   - Codex: CLI script (`.codex/superpowers-codex`)
-   - OpenCode: Plugin module (`.opencode/plugin/superpowers.js`)
+   - Codex: CLI script (`.codex/xiaoming-codex`)
+   - OpenCode: Plugin module (`.opencode/plugin/xiaoming.js`)
 
 3. **Skill Directories**
-   - Core: `~/.config/opencode/superpowers/skills/` (or installed location)
+   - Core: `~/.config/opencode/xiaoming/skills/` (or installed location)
    - Personal: `~/.config/opencode/skills/` (shadows core skills)
 
 ### Code Reuse Strategy
 
-Extract common functionality from `.codex/superpowers-codex` into shared module:
+Extract common functionality from `.codex/xiaoming-codex` into shared module:
 
 ```javascript
 // lib/skills-core.js
@@ -120,8 +120,8 @@ Lists all available skills with metadata.
 
 When a new session starts (`session.started` event):
 
-1. **Inject using-superpowers content**
-   - Full content of the using-superpowers skill
+1. **Inject using-xiaoming-bootstrap content**
+   - Full content of the using-xiaoming-bootstrap skill
    - Establishes mandatory workflows
 
 2. **Run find_skills automatically**
@@ -150,24 +150,24 @@ When a new session starts (`session.started` event):
 ### Plugin Structure
 
 ```javascript
-// .opencode/plugin/superpowers.js
+// .opencode/plugin/xiaoming.js
 const skillsCore = require('../../lib/skills-core');
 const path = require('path');
 const fs = require('fs');
 const { z } = require('zod');
 
-export const SuperpowersPlugin = async ({ client, directory, $ }) => {
-  const superpowersDir = path.join(process.env.HOME, '.config/opencode/superpowers');
+export const XiaomingPlugin = async ({ client, directory, $ }) => {
+  const xiaomingDir = path.join(process.env.HOME, '.config/opencode/xiaoming');
   const personalDir = path.join(process.env.HOME, '.config/opencode/skills');
 
   return {
     'session.started': async () => {
-      const usingSuperpowers = await readSkill('using-superpowers');
+      const usingXiaoming = await readSkill('using-xiaoming-bootstrap');
       const skillsList = await findAllSkills();
       const toolMapping = getToolMappingInstructions();
 
       return {
-        context: `${usingSuperpowers}\n\n${skillsList}\n\n${toolMapping}`
+        context: `${usingXiaoming}\n\n${skillsList}\n\n${toolMapping}`
       };
     },
 
@@ -198,16 +198,16 @@ export const SuperpowersPlugin = async ({ client, directory, $ }) => {
 ## File Structure
 
 ```
-superpowers/
+xiaoming/
 ├── lib/
 │   └── skills-core.js           # NEW: Shared skill logic
 ├── .codex/
-│   ├── superpowers-codex        # UPDATED: Use skills-core
-│   ├── superpowers-bootstrap.md
+│   ├── xiaoming-codex        # UPDATED: Use skills-core
+│   ├── xiaoming-bootstrap.md
 │   └── INSTALL.md
 ├── .opencode/
 │   ├── plugin/
-│   │   └── superpowers.js       # NEW: OpenCode plugin
+│   │   └── xiaoming.js       # NEW: OpenCode plugin
 │   └── INSTALL.md               # NEW: Installation guide
 └── skills/                       # Unchanged
 ```
@@ -217,12 +217,12 @@ superpowers/
 ### Phase 1: Refactor Shared Core
 
 1. Create `lib/skills-core.js`
-   - Extract frontmatter parsing from `.codex/superpowers-codex`
+   - Extract frontmatter parsing from `.codex/xiaoming-codex`
    - Extract skill discovery logic
    - Extract path resolution (with shadowing)
    - Update to use only `name` and `description` (no `when_to_use`)
 
-2. Update `.codex/superpowers-codex` to use shared core
+2. Update `.codex/xiaoming-codex` to use shared core
    - Import from `../lib/skills-core.js`
    - Remove duplicated code
    - Keep CLI wrapper logic
@@ -234,7 +234,7 @@ superpowers/
 
 ### Phase 2: Build OpenCode Plugin
 
-1. Create `.opencode/plugin/superpowers.js`
+1. Create `.opencode/plugin/xiaoming.js`
    - Import shared core from `../../lib/skills-core.js`
    - Implement plugin function
    - Define custom tools (use_skill, find_skills)
