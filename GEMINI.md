@@ -1,2 +1,2 @@
-@./skills/using-superpowers/SKILL.md
-@./skills/using-superpowers/references/gemini-tools.md
+@./skills/using-xiaoming-bootstrap/SKILL.md
+@./skills/using-xiaoming-bootstrap/references/gemini-tools.md
