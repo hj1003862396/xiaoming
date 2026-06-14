@@ -3,74 +3,74 @@ name: writing-plans
 description: "当您有针对多步骤任务的规范或需求时，在接触代码之前使用"
 ---
 
-# Writing Plans
+# 撰写计划 (Writing Plans)
 
-## Overview
+## 概述
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+编写全面的实施计划，假设工程师对我们的代码库零上下文，且品味值得商榷。记录他们需要知道的一切：每个任务要修改哪些文件、代码、测试、可能需要查阅的文档、如何测试。将整个计划给他们，分解为细粒度的任务。DRY（不要重复自己）、YAGNI（你不会需要它）、TDD（测试驱动开发）、频繁提交 (commit)。
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+假设他们是熟练的开发者，但对我们的工具集或问题领域几乎一无所知。假设他们对好的测试设计不是很了解。
 
-**Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+**开始时宣布：** "我正在使用 writing-plans 技能 (skill) 创建实施计划。"
 
-**Context:** If working in an isolated worktree, it should have been created via the `xiaoming:using-git-worktrees` skill at execution time.
+**上下文：** 如果在隔离的工作树 (worktree) 中工作，它应该已经通过 `xiaoming:using-git-worktrees` 技能 (skill) 在执行时创建好了。
 
-**Save plans to:** `docs/xiaoming/plans/YYYY-MM-DD-<feature-name>.md`
-- (User preferences for plan location override this default)
+**计划保存到：** `docs/xiaoming/plans/YYYY-MM-DD-<feature-name>.md`
+- （用户对计划位置的偏好优先于此默认设置）
 
-## Scope Check
+## 范围检查
 
-If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
+如果规格文档 (spec) 涵盖了多个独立子系统，它应该已在头脑风暴 (brainstorming) 阶段分解为子项目规格文档。如果没有，建议将其分解为独立计划——每个子系统一个。每个计划本身应能产出可工作、可测试的软件。
 
-## File Structure
+## 文件结构
 
-Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
+在定义任务之前，规划出将要创建或修改哪些文件以及每个文件的职责。这是分解决策被确定下来的地方。
 
-- Design units with clear boundaries and well-defined interfaces. Each file should have one clear responsibility.
-- You reason best about code you can hold in context at once, and your edits are more reliable when files are focused. Prefer smaller, focused files over large ones that do too much.
-- Files that change together should live together. Split by responsibility, not by technical layer.
-- In existing codebases, follow established patterns. If the codebase uses large files, don't unilaterally restructure - but if a file you're modifying has grown unwieldy, including a split in the plan is reasonable.
+- 设计具有清晰边界和定义良好接口的单元。每个文件应有一个明确的职责。
+- 你对一次能放入上下文中的代码推理最准确，文件聚焦时编辑也更可靠。相比做太多事情的大文件，优先选择更小、更专注的文件。
+- 一起变更的文件应该放在一起。按职责拆分，而非按技术层次。
+- 在现有代码库中，遵循已有模式。如果代码库使用大文件，不要擅自重构——但如果你正在修改的文件已经变得难以管理，在计划中包含拆分是合理的。
 
-This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
+这个结构为任务分解提供依据。每个任务应该产出独立有意义的自包含变更。
 
-## Bite-Sized Task Granularity
+## 细粒度任务粒度
 
-**Each step is one action (2-5 minutes):**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
+**每个步骤是一个动作（2-5 分钟）：**
+- "写失败测试" — 一个步骤
+- "运行它确保失败" — 一个步骤
+- "实施让测试通过的最少代码" — 一个步骤
+- "运行测试确保通过" — 一个步骤
+- "提交 (commit)" — 一个步骤
 
-## Plan Document Header
+## 计划文档头部
 
-**Every plan MUST start with this header:**
+**每个计划必须以此头部开始：**
 
 ```markdown
-# [Feature Name] Implementation Plan
+# [特性名称] 实施计划
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:subagent-driven-development (recommended) or xiaoming:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **对于代理工作者：** 必须使用子技能：使用 xiaoming:subagent-driven-development（推荐）或 xiaoming:executing-plans 逐任务实施此计划。步骤使用复选框（`- [ ]`）语法进行追踪。
 
-**Goal:** [One sentence describing what this builds]
+**目标：** [一句话描述这构建了什么]
 
-**Architecture:** [2-3 sentences about approach]
+**架构：** [2-3 句关于方法的话]
 
-**Tech Stack:** [Key technologies/libraries]
+**技术栈：** [关键技术/库]
 
 ---
 ```
 
-## Task Structure
+## 任务结构
 
 ````markdown
-### Task N: [Component Name]
+### Task N：[组件名称]
 
-**Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+**文件：**
+- 创建：`exact/path/to/file.py`
+- 修改：`exact/path/to/existing.py:123-145`
+- 测试：`tests/exact/path/to/test.py`
 
-- [ ] **Step 1: Write the failing test**
+- [ ] **步骤 1：写失败测试**
 
 ```python
 def test_specific_behavior():
@@ -78,24 +78,24 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [ ] **步骤 2：运行测试验证其失败**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+运行：`pytest tests/path/test.py::test_name -v`
+预期：FAIL，提示"function not defined"
 
-- [ ] **Step 3: Write minimal implementation**
+- [ ] **步骤 3：写最少实施代码**
 
 ```python
 def function(input):
     return expected
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [ ] **步骤 4：运行测试验证其通过**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
+运行：`pytest tests/path/test.py::test_name -v`
+预期：PASS
 
-- [ ] **Step 5: Commit**
+- [ ] **步骤 5：提交 (commit)**
 
 ```bash
 git add tests/path/test.py src/path/file.py
@@ -103,50 +103,50 @@ git commit -m "feat: add specific feature"
 ```
 ````
 
-## No Placeholders
+## 不得使用占位符
 
-Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
-- "TBD", "TODO", "implement later", "fill in details"
-- "Add appropriate error handling" / "add validation" / "handle edge cases"
-- "Write tests for the above" (without actual test code)
-- "Similar to Task N" (repeat the code — the engineer may be reading tasks out of order)
-- Steps that describe what to do without showing how (code blocks required for code steps)
-- References to types, functions, or methods not defined in any task
+每个步骤必须包含工程师需要的实际内容。以下是**计划失败**——永远不要这样写：
+- "TBD"、"TODO"、"稍后实施"、"填写细节"
+- "添加适当的错误处理" / "添加验证" / "处理边缘情况"
+- "为上述内容写测试"（没有实际测试代码）
+- "类似于 Task N"（重复代码——工程师可能会不按顺序阅读任务）
+- 描述要做什么但没有说明怎么做的步骤（代码步骤需要代码块）
+- 引用在任何任务中都没有定义的类型、函数或方法
 
-## Remember
-- Exact file paths always
-- Complete code in every step — if a step changes code, show the code
-- Exact commands with expected output
-- DRY, YAGNI, TDD, frequent commits
+## 注意事项
+- 始终使用精确的文件路径
+- 每个步骤中完整的代码——如果步骤修改代码，展示代码
+- 带预期输出的精确命令
+- DRY、YAGNI、TDD、频繁提交 (commit)
 
-## Self-Review
+## 自我审查
 
-After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
+写完整个计划后，用全新的眼光查看规格文档 (spec)，将计划与之对照检查。这是你自己运行的清单——不是子代理派发。
 
-**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
+**1. 规格文档覆盖：** 快速浏览规格文档中的每个章节/需求。你能指出一个实施它的任务吗？列出任何差距。
 
-**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
+**2. 占位符扫描：** 在你的计划中搜索红旗——"不得使用占位符"章节中的任何模式。修复它们。
 
-**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+**3. 类型一致性：** 你在后续任务中使用的类型、方法签名和属性名是否与你在早期任务中定义的相匹配？在 Task 3 中叫做 `clearLayers()` 但在 Task 7 中叫做 `clearFullLayers()` 是一个 bug。
 
-If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
+如果你发现问题，就地修复。无需重新审查——修复后继续。如果你发现没有对应任务的规格文档需求，添加该任务。
 
-## Execution Handoff
+## 执行交接
 
-After saving the plan, offer execution choice:
+保存计划后，提供执行选择：
 
-**"Plan complete and saved to `docs/xiaoming/plans/<filename>.md`. Two execution options:**
+**"计划已完成并保存到 `docs/xiaoming/plans/<filename>.md`。两种执行方式：**
 
-**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
+**1. 子代理驱动（推荐）** — 我为每个任务派发一个全新的子代理，任务之间进行审查，快速迭代
 
-**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
+**2. 内联执行** — 在此会话中使用 executing-plans 执行任务，分批执行并带检查点
 
-**Which approach?"**
+**选择哪种方式？"**
 
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use xiaoming:subagent-driven-development
-- Fresh subagent per task + two-stage review
+**如果选择子代理驱动：**
+- **必须使用子技能：** 使用 xiaoming:subagent-driven-development
+- 每任务一个全新子代理 + 两阶段审查
 
-**If Inline Execution chosen:**
-- **REQUIRED SUB-SKILL:** Use xiaoming:executing-plans
-- Batch execution with checkpoints for review
+**如果选择内联执行：**
+- **必须使用子技能：** 使用 xiaoming:executing-plans
+- 分批执行并带检查点以供审查
