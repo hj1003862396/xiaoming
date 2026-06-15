@@ -90,7 +90,7 @@ git rev-parse --show-superproject-working-tree 2>/dev/null
 git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
 ```
 
-**如果未被忽略：** 添加到 .gitignore，提交 (commit) 变更，然后继续。
+**如果未被忽略：** 添加到 .gitignore，保存变更，然后继续。
 
 **为什么重要：** 防止意外将工作树内容提交到仓库。
 
@@ -164,7 +164,7 @@ npm test / cargo test / pytest / go test ./...
 | 两者都存在 | 使用 `.worktrees/` |
 | 两者都不存在 | 检查指令文件，然后默认 `.worktrees/` |
 | 全局路径存在 | 使用它（向后兼容） |
-| 目录未被忽略 | 添加到 .gitignore + 提交 (commit) |
+| 目录未被忽略 | 添加到 .gitignore + 保存变更 |
 | 创建时权限错误 | 沙箱回退，就地工作 |
 | 基准时测试失败 | 汇报失败 + 询问 |
 | 无 package.json/Cargo.toml | 跳过依赖安装 |

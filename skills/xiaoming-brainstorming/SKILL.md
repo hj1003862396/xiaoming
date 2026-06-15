@@ -26,7 +26,7 @@ description: "在进行任何创造性工作（如创建特性、构建组件、
 3. **提出澄清问题** — 逐一提问，理解目的/约束/成功标准
 4. **提出 2-3 个方案** — 附权衡 (trade-off) 分析及你的推荐理由
 5. **呈现设计** — 按各章节的复杂度分段呈现，每段后获取用户批准
-6. **撰写设计文档** — 保存至 `docs/xiaoming/specs/YYYY-MM-DD-<topic>-design.md` 并提交 (commit)
+6. **撰写设计文档** — 保存至 `docs/xiaoming/specs/YYYY-MM-DD-<topic>-design.md`
 7. **规格文档自我审查 (Spec self-review)** — 快速就地检查占位符、矛盾、歧义、范围（见下文）
 8. **用户审查规格文档** — 请用户审查规格文档文件后再继续
 9. **过渡到实施** — 调用 writing-plans 技能 (skill) 创建实施计划 (implementation plan)
@@ -111,7 +111,7 @@ digraph brainstorming {
 - 将经过验证的设计（规格文档 spec）写入 `docs/xiaoming/specs/YYYY-MM-DD-<topic>-design.md`
   - （用户对规格文档位置的偏好优先于此默认设置）
 - 如果有 elements-of-style:writing-clearly-and-concisely 技能 (skill)，可使用
-- 将设计文档提交 (commit) 到 git
+- 将设计文档保存到 specs 目录下
 
 **规格文档自我审查 (Spec Self-Review)：**
 撰写完规格文档后，用全新的眼光审视它：
@@ -126,7 +126,7 @@ digraph brainstorming {
 **用户审查关卡：**
 规格文档审查循环通过后，请用户在继续之前审查规格文档：
 
-> "规格文档已撰写并提交 (commit) 至 `<路径>`。请审查后告知是否需要修改，然后我们开始撰写实施计划 (implementation plan)。"
+> "规格文档已撰写并保存至 `<路径>`。请审查后告知是否需要修改，然后我们开始撰写实施计划 (implementation plan)。"
 
 等待用户回应。如果他们要求修改，进行修改后重新运行规格文档审查循环。只有在用户批准后才继续推进。
 
