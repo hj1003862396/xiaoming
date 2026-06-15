@@ -50,7 +50,7 @@ digraph process {
         "派发实施者子代理 (./implementer-prompt.md)" [shape=box];
         "实施者子代理提问？" [shape=diamond];
         "回答问题，提供上下文" [shape=box];
-        "实施者子代理实施、测试、提交、自我审查" [shape=box];
+        "实施者子代理实施、测试、自我审查" [shape=box];
         "派发规格文档审查子代理 (./spec-reviewer-prompt.md)" [shape=box];
         "规格文档审查子代理确认代码符合规格文档？" [shape=diamond];
         "实施者子代理修复规格文档差距" [shape=box];
