@@ -1,6 +1,6 @@
 # Svelte Todo List - Implementation Plan
 
-Execute this plan using the `xiaoming:subagent-driven-development` skill.
+Execute this plan using the `xiaoming:xiaoming-brainstorming-subagent-driven-development` skill.
 
 ## Context
 

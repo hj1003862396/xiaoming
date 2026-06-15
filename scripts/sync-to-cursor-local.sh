@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copy this checkout into ~/.cursor/plugins/local/xiaoming for Cursor local testing.
+# Copy this checkout into ~/.cursor/plugins/local/xiaoming-brainstorming for Cursor local testing.
 #
 # Cursor rejects symlinks that point outside ~/.cursor/plugins/local/ (security
 # validation). Use this script after editing the repo, then Reload Window.

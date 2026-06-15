@@ -42,12 +42,12 @@ else
     exit 1
 fi
 
-# Test 3: Check using-xiaoming-bootstrap skill exists (critical for bootstrap)
-echo "Test 3: Checking using-xiaoming-bootstrap skill (required for bootstrap)..."
-if [ -f "$SUPERPOWERS_SKILLS_DIR/using-xiaoming-bootstrap/SKILL.md" ]; then
-    echo "  [PASS] using-xiaoming-bootstrap skill exists"
+# Test 3: Check xiaoming-using-xiaoming skill exists (critical for bootstrap)
+echo "Test 3: Checking xiaoming-using-xiaoming skill (required for bootstrap)..."
+if [ -f "$SUPERPOWERS_SKILLS_DIR/xiaoming-using-xiaoming/SKILL.md" ]; then
+    echo "  [PASS] xiaoming-using-xiaoming skill exists"
 else
-    echo "  [FAIL] using-xiaoming-bootstrap skill not found (required for bootstrap)"
+    echo "  [FAIL] xiaoming-using-xiaoming skill not found (required for bootstrap)"
     exit 1
 fi
 
@@ -62,7 +62,7 @@ fi
 
 # Test 5: Verify bootstrap text does not reference a hardcoded skills path
 echo "Test 5: Checking bootstrap does not advertise a wrong skills path..."
-if grep -q 'configDir}/skills/xiaoming/' "$SUPERPOWERS_PLUGIN_FILE"; then
+if grep -q 'configDir}/skills/xiaoming-brainstorming/' "$SUPERPOWERS_PLUGIN_FILE"; then
     echo "  [FAIL] Plugin still references old configDir skills path"
     exit 1
 else

@@ -184,7 +184,7 @@ describe_priority_result \
 
 # Test 3: Document project vs bundled xiaoming priority
 echo ""
-echo "Test 3: Documenting project vs personal/xiaoming priority..."
+echo "Test 3: Documenting project vs personal/xiaoming-brainstorming priority..."
 echo "  Running from project directory..."
 
 run_opencode output "$TEST_HOME/test-project" "Call the skill tool with name \"priority-test\". Show the exact content including any PRIORITY_MARKER text."

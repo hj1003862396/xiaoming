@@ -63,8 +63,8 @@ export const XiaomingPlugin = async ({ client, directory }) => {
     // Return cached result on subsequent calls
     if (_bootstrapCache !== undefined) return _bootstrapCache;
 
-    // Try to load using-xiaoming-bootstrap skill
-    const skillPath = path.join(xiaomingSkillsDir, 'using-xiaoming-bootstrap', 'SKILL.md');
+    // Try to load xiaoming-using-xiaoming skill
+    const skillPath = path.join(xiaomingSkillsDir, 'xiaoming-using-xiaoming', 'SKILL.md');
     if (!fs.existsSync(skillPath)) {
       _bootstrapCache = null;
       return null;
@@ -85,7 +85,7 @@ Use OpenCode's native \`skill\` tool to list and load skills.`;
     _bootstrapCache = `<EXTREMELY_IMPORTANT>
 You have xiaoming.
 
-**IMPORTANT: The using-xiaoming-bootstrap skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "using-xiaoming-bootstrap" again - that would be redundant.**
+**IMPORTANT: The xiaoming-using-xiaoming skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "xiaoming-using-xiaoming" again - that would be redundant.**
 
 ${content}
 

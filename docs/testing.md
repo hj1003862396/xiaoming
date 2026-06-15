@@ -149,7 +149,7 @@ python3 tests/claude-code/analyze-token-usage.py ~/.claude/projects/<project-dir
 Session transcripts are stored in `~/.claude/projects/` with the working directory path encoded:
 
 ```bash
-# Example for /Users/yourname/Documents/GitHub/xiaoming/xiaoming
+# Example for /Users/yourname/Documents/GitHub/xiaoming/xiaoming-brainstorming
 SESSION_DIR="$HOME/.claude/projects/-Users-yourname-Documents-GitHub-xiaoming-xiaoming"
 
 # Find recent sessions
@@ -182,7 +182,7 @@ ls -lt "$SESSION_DIR"/*.jsonl | head -5
 **Problem**: Skill not found when running headless tests
 
 **Solutions**:
-1. Ensure you're running FROM the xiaoming directory: `cd /path/to/xiaoming && tests/...`
+1. Ensure you're running FROM the xiaoming directory: `cd /path/to/xiaoming-brainstorming && tests/...`
 2. Check `~/.claude/settings.json` has `"xiaoming@xiaoming-dev": true` in `enabledPlugins`
 3. Verify skill exists in `skills/` directory
 

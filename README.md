@@ -29,5 +29,5 @@ Cursor Settings → Plugins → 启用 Xiaoming
 
 ```text
 # 验收
-/xiaoming 你好
+/xiaoming-brainstorming 你好
 ```

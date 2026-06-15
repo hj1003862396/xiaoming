@@ -27,10 +27,10 @@ If you previously installed xiaoming using `git clone` and symlinks, remove the 
 ```bash
 # Remove old symlinks
 rm -f ~/.config/opencode/plugins/xiaoming.js
-rm -rf ~/.config/opencode/skills/xiaoming
+rm -rf ~/.config/opencode/skills/xiaoming-brainstorming
 
 # Optionally remove the cloned repo
-rm -rf ~/.config/opencode/xiaoming
+rm -rf ~/.config/opencode/xiaoming-brainstorming
 
 # Remove skills.paths from opencode.json if you added one for xiaoming
 ```
@@ -50,7 +50,7 @@ use skill tool to list skills
 ### Loading a Skill
 
 ```
-use skill tool to load xiaoming/xiaoming
+use skill tool to load xiaoming/xiaoming-brainstorming
 ```
 
 ### Personal Skills
@@ -153,5 +153,5 @@ Then use the installed package path in `opencode.json`:
 ## Getting Help
 
 - Report issues: https://github.com/obra/xiaoming/issues
-- Main documentation: https://github.com/obra/xiaoming
+- Main documentation: https://github.com/obra/xiaoming-brainstorming
 - OpenCode docs: https://opencode.ai/docs/

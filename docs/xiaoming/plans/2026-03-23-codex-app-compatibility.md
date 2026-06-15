@@ -1,6 +1,6 @@
 # Codex App Compatibility Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:subagent-driven-development (recommended) or xiaoming:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:xiaoming-brainstorming-subagent-driven-development (recommended) or xiaoming:xiaoming-brainstorming-executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make `using-git-worktrees`, `finishing-a-development-branch`, and related skills work in the Codex App's sandboxed worktree environment without breaking existing behavior.
 
@@ -16,22 +16,22 @@
 
 | File | Responsibility | Action |
 |---|---|---|
-| `skills/using-git-worktrees/SKILL.md` | Worktree creation + isolation | Add Step 0 detection + sandbox fallback |
-| `skills/finishing-a-development-branch/SKILL.md` | Branch finishing workflow | Add Step 1.5 detection + cleanup guard |
-| `skills/subagent-driven-development/SKILL.md` | Plan execution with subagents | Update Integration description |
-| `skills/executing-plans/SKILL.md` | Plan execution inline | Update Integration description |
-| `skills/using-xiaoming-bootstrap/references/codex-tools.md` | Codex platform reference | Add detection + finishing docs |
+| `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md` | Worktree creation + isolation | Add Step 0 detection + sandbox fallback |
+| `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` | Branch finishing workflow | Add Step 1.5 detection + cleanup guard |
+| `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md` | Plan execution with subagents | Update Integration description |
+| `skills/xiaoming-brainstorming-executing-plans/SKILL.md` | Plan execution inline | Update Integration description |
+| `skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md` | Codex platform reference | Add detection + finishing docs |
 
 ---
 
 ### Task 1: Add Step 0 to `using-git-worktrees`
 
 **Files:**
-- Modify: `skills/using-git-worktrees/SKILL.md:14-15` (insert after Overview, before Directory Selection Process)
+- Modify: `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md:14-15` (insert after Overview, before Directory Selection Process)
 
 - [ ] **Step 1: Read the current skill file**
 
-Read `skills/using-git-worktrees/SKILL.md` in full. Identify the exact insertion point: after the "Announce at start" line (line 14) and before "## Directory Selection Process" (line 16).
+Read `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md` in full. Identify the exact insertion point: after the "Announce at start" line (line 14) and before "## Directory Selection Process" (line 16).
 
 - [ ] **Step 2: Insert Step 0 section**
 
@@ -73,7 +73,7 @@ Read the file again. Confirm:
 - [ ] **Step 4: Commit**
 
 ```bash
-git add skills/using-git-worktrees/SKILL.md
+git add skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md
 git commit -m "feat(using-git-worktrees): add Step 0 environment detection (PRI-823)
 
 Skip worktree creation when already in a linked worktree. Includes
@@ -85,7 +85,7 @@ sandbox fallback for permission errors on git worktree add."
 ### Task 2: Update `using-git-worktrees` Integration section
 
 **Files:**
-- Modify: `skills/using-git-worktrees/SKILL.md:211-215` (Integration > Called by)
+- Modify: `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md:211-215` (Integration > Called by)
 
 - [ ] **Step 1: Update the three "Called by" entries**
 
@@ -112,7 +112,7 @@ Read the Integration section. Confirm all three entries are updated, "Pairs with
 - [ ] **Step 3: Commit**
 
 ```bash
-git add skills/using-git-worktrees/SKILL.md
+git add skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md
 git commit -m "docs(using-git-worktrees): update Integration descriptions (PRI-823)
 
 Clarify that skill ensures a workspace exists, not that it always creates one."
@@ -123,11 +123,11 @@ Clarify that skill ensures a workspace exists, not that it always creates one."
 ### Task 3: Add Step 1.5 to `finishing-a-development-branch`
 
 **Files:**
-- Modify: `skills/finishing-a-development-branch/SKILL.md:38` (insert after Step 1, before Step 2)
+- Modify: `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md:38` (insert after Step 1, before Step 2)
 
 - [ ] **Step 1: Read the current skill file**
 
-Read `skills/finishing-a-development-branch/SKILL.md` in full. Identify the insertion point: after "**If tests pass:** Continue to Step 2." (line 38) and before "### Step 2: Determine Base Branch" (line 40).
+Read `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` in full. Identify the insertion point: after "**If tests pass:** Continue to Step 2." (line 38) and before "### Step 2: Determine Base Branch" (line 40).
 
 - [ ] **Step 2: Insert Step 1.5 section**
 
@@ -190,7 +190,7 @@ Read the file again. Confirm:
 - [ ] **Step 4: Commit**
 
 ```bash
-git add skills/finishing-a-development-branch/SKILL.md
+git add skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md
 git commit -m "feat(finishing-a-development-branch): add Step 1.5 environment detection (PRI-823)
 
 Detect externally managed worktrees with detached HEAD and emit handoff
@@ -202,11 +202,11 @@ payload instead of 4-option menu. Includes commit SHA and data loss warning."
 ### Task 4: Add Step 5 cleanup guard to `finishing-a-development-branch`
 
 **Files:**
-- Modify: `skills/finishing-a-development-branch/SKILL.md` (Step 5: Cleanup Worktree — find by section heading, line numbers will have shifted after Task 3)
+- Modify: `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` (Step 5: Cleanup Worktree — find by section heading, line numbers will have shifted after Task 3)
 
 - [ ] **Step 1: Read the current Step 5 section**
 
-Find the "### Step 5: Cleanup Worktree" section in `skills/finishing-a-development-branch/SKILL.md` (line numbers will have shifted after Task 3's insertion). The current Step 5 is:
+Find the "### Step 5: Cleanup Worktree" section in `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` (line numbers will have shifted after Task 3's insertion). The current Step 5 is:
 
 ```markdown
 ### Step 5: Cleanup Worktree
@@ -269,7 +269,7 @@ Read Step 5. Confirm:
 - [ ] **Step 4: Commit**
 
 ```bash
-git add skills/finishing-a-development-branch/SKILL.md
+git add skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md
 git commit -m "feat(finishing-a-development-branch): add Step 5 cleanup guard (PRI-823)
 
 Re-detect externally managed worktree at cleanup time and skip removal.
@@ -282,39 +282,39 @@ Options 1 and 4 only, matching Quick Reference and Common Mistakes."
 ### Task 5: Update Integration lines in `subagent-driven-development` and `executing-plans`
 
 **Files:**
-- Modify: `skills/subagent-driven-development/SKILL.md:268`
-- Modify: `skills/executing-plans/SKILL.md:68`
+- Modify: `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md:268`
+- Modify: `skills/xiaoming-brainstorming-executing-plans/SKILL.md:68`
 
 - [ ] **Step 1: Update `subagent-driven-development`**
 
 Change line 268 from:
 ```
-- **xiaoming:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+- **xiaoming:xiaoming-brainstorming-using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
 ```
 To:
 ```
-- **xiaoming:using-git-worktrees** - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
+- **xiaoming:xiaoming-brainstorming-using-git-worktrees** - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
 ```
 
 - [ ] **Step 2: Update `executing-plans`**
 
 Change line 68 from:
 ```
-- **xiaoming:using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
+- **xiaoming:xiaoming-brainstorming-using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
 ```
 To:
 ```
-- **xiaoming:using-git-worktrees** - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
+- **xiaoming:xiaoming-brainstorming-using-git-worktrees** - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
 ```
 
 - [ ] **Step 3: Verify both files**
 
-Read line 268 of `skills/subagent-driven-development/SKILL.md` and line 68 of `skills/executing-plans/SKILL.md`. Confirm both say "Ensures isolated workspace (creates one or verifies existing)".
+Read line 268 of `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md` and line 68 of `skills/xiaoming-brainstorming-executing-plans/SKILL.md`. Confirm both say "Ensures isolated workspace (creates one or verifies existing)".
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add skills/subagent-driven-development/SKILL.md skills/executing-plans/SKILL.md
+git add skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md skills/xiaoming-brainstorming-executing-plans/SKILL.md
 git commit -m "docs(sdd, executing-plans): update worktree Integration descriptions (PRI-823)
 
 Clarify that using-git-worktrees ensures a workspace exists rather than
@@ -326,11 +326,11 @@ always creating one."
 ### Task 6: Add environment detection docs to `codex-tools.md`
 
 **Files:**
-- Modify: `skills/using-xiaoming-bootstrap/references/codex-tools.md:25` (append at end)
+- Modify: `skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md:25` (append at end)
 
 - [ ] **Step 1: Read the current file**
 
-Read `skills/using-xiaoming-bootstrap/references/codex-tools.md` in full. Confirm it ends at line 25-26 after the multi_agent section.
+Read `skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md` in full. Confirm it ends at line 25-26 after the multi_agent section.
 
 - [ ] **Step 2: Append two new sections**
 
@@ -378,7 +378,7 @@ Read the full file. Confirm:
 - [ ] **Step 4: Commit**
 
 ```bash
-git add skills/using-xiaoming-bootstrap/references/codex-tools.md
+git add skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md
 git commit -m "docs(codex-tools): add environment detection and App finishing docs (PRI-823)
 
 Document the git-dir vs git-common-dir detection pattern and the Codex
@@ -536,11 +536,11 @@ Expected: 6 passed, 0 failed.
 - [ ] **Step 2: Read each modified file and verify changes**
 
 Read each file end-to-end:
-- `skills/using-git-worktrees/SKILL.md` — Step 0 present, rest unchanged
-- `skills/finishing-a-development-branch/SKILL.md` — Step 1.5 present, cleanup guard present, rest unchanged
-- `skills/subagent-driven-development/SKILL.md` — line 268 updated
-- `skills/executing-plans/SKILL.md` — line 68 updated
-- `skills/using-xiaoming-bootstrap/references/codex-tools.md` — two new sections at end
+- `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md` — Step 0 present, rest unchanged
+- `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` — Step 1.5 present, cleanup guard present, rest unchanged
+- `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md` — line 268 updated
+- `skills/xiaoming-brainstorming-executing-plans/SKILL.md` — line 68 updated
+- `skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md` — two new sections at end
 
 - [ ] **Step 3: Verify no unintended changes**
 

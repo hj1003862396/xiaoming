@@ -5,7 +5,7 @@
 ### Removals
 
 - **Legacy slash commands removed** — `/brainstorm`, `/execute-plan`, and `/write-plan` are gone. They were deprecated stubs that did nothing but tell the user to invoke the corresponding skill. Invoke `superpowers:brainstorming`, `superpowers:executing-plans`, and `superpowers:writing-plans` directly instead. (#1188)
-- **`superpowers:code-reviewer` named agent removed** — the agent was the plugin's only named agent and was used by exactly two skills, while every other reviewer/implementer subagent in the repo dispatches `general-purpose` with a prompt template alongside its skill. The agent's persona and checklist have been merged into `skills/requesting-code-review/code-reviewer.md` as a self-contained Task-dispatch template. Anyone dispatching `Task (superpowers:code-reviewer)` should switch to `Task (general-purpose)` with the prompt template instead. (PR #1299)
+- **`superpowers:code-reviewer` named agent removed** — the agent was the plugin's only named agent and was used by exactly two skills, while every other reviewer/implementer subagent in the repo dispatches `general-purpose` with a prompt template alongside its skill. The agent's persona and checklist have been merged into `skills/xiaoming-brainstorming-requesting-code-review/code-reviewer.md` as a self-contained Task-dispatch template. Anyone dispatching `Task (superpowers:code-reviewer)` should switch to `Task (general-purpose)` with the prompt template instead. (PR #1299)
 - **Integration sections removed from skills** — these were a legacy of the time before agents had native skills systems and didn't help with steering.
 
 ### Worktree Skills Rewrite
@@ -45,7 +45,7 @@ New `sync-to-codex-plugin` script mirrors superpowers into the OpenAI Codex plug
 
 ### Code Review Consolidation
 
-`requesting-code-review` is now self-contained: the persona, checklist, and dispatch template live in `skills/requesting-code-review/code-reviewer.md` and the skill dispatches `Task (general-purpose)` directly. (PR #1299)
+`requesting-code-review` is now self-contained: the persona, checklist, and dispatch template live in `skills/xiaoming-brainstorming-requesting-code-review/code-reviewer.md` and the skill dispatches `Task (general-purpose)` directly. (PR #1299)
 
 - **Single source of truth** — the persona/checklist that previously lived in both `agents/code-reviewer.md` and the skill's placeholder template (and drifted independently) is now one file.
 - **`subagent-driven-development` follows suit** — its `code-quality-reviewer-prompt.md` now dispatches `Task (general-purpose)` instead of the named agent.
@@ -325,7 +325,7 @@ Optional browser-based companion for brainstorming sessions. When a topic would 
 Automated review loops for spec and plan documents using subagent dispatch:
 
 - `skills/brainstorming/spec-document-reviewer-prompt.md` — Reviewer checks completeness, consistency, architecture, and YAGNI
-- `skills/writing-plans/plan-document-reviewer-prompt.md` — Reviewer checks spec alignment, task decomposition, file structure, and file size
+- `skills/xiaoming-brainstorming-writing-plans/plan-document-reviewer-prompt.md` — Reviewer checks spec alignment, task decomposition, file structure, and file size
 - Brainstorming dispatches spec reviewer after writing the design doc
 - Writing-plans includes chunk-based plan review loop after each section
 - Review loops repeat until approved or escalate after 5 iterations
@@ -610,7 +610,7 @@ Other subagent workflow improvements:
 - Self-review checklist before reporting completion
 - Plan read once at start, extracted to TodoWrite
 
-New prompt templates in `skills/subagent-driven-development/`:
+New prompt templates in `skills/xiaoming-brainstorming-subagent-driven-development/`:
 - `implementer-prompt.md` - Includes self-review checklist, encourages questions
 - `spec-reviewer-prompt.md` - Skeptical verification against requirements
 - `code-quality-reviewer-prompt.md` - Standard code review
@@ -830,8 +830,8 @@ These changes address observed agent behavior where they rationalize around skil
 
 ### Files Changed
 - New: `agents/code-reviewer.md` - Agent definition with review checklist and output format
-- Updated: `skills/requesting-code-review/SKILL.md` - References to `superpowers:code-reviewer`
-- Updated: `skills/subagent-driven-development/SKILL.md` - References to `superpowers:code-reviewer`
+- Updated: `skills/xiaoming-brainstorming-requesting-code-review/SKILL.md` - References to `superpowers:code-reviewer`
+- Updated: `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md` - References to `superpowers:code-reviewer`
 
 ## v3.2.0 (2025-10-18)
 
@@ -887,7 +887,7 @@ These changes address observed agent behavior where they rationalize around skil
 - Restructured Key Principles as scannable table
 
 **Anthropic best practices integration**
-- Added `skills/writing-skills/anthropic-best-practices.md` - Official Anthropic skill authoring guide
+- Added `skills/xiaoming-brainstorming-writing-skills/anthropic-best-practices.md` - Official Anthropic skill authoring guide
 - Referenced in writing-skills SKILL.md for comprehensive guidance
 - Provides patterns for progressive disclosure, workflows, and evaluation
 

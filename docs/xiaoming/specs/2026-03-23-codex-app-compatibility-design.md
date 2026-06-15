@@ -143,11 +143,11 @@ Otherwise, check and remove as today. Note: the existing Step 5 text says "For O
 
 Both skills have an identical Integration section line. Change from:
 ```
-- xiaoming:using-git-worktrees - REQUIRED: Set up isolated workspace before starting
+- xiaoming:xiaoming-brainstorming-using-git-worktrees - REQUIRED: Set up isolated workspace before starting
 ```
 To:
 ```
-- xiaoming:using-git-worktrees - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
+- xiaoming:xiaoming-brainstorming-using-git-worktrees - REQUIRED: Ensures isolated workspace (creates one or verifies existing)
 ```
 
 **Everything else unchanged:** Dispatch/review loop, prompt templates, model selection, status handling, red flags.
@@ -207,11 +207,11 @@ names, commit messages, and PR descriptions for the user to copy.
 
 | File | Change |
 |---|---|
-| `skills/using-git-worktrees/SKILL.md` | +12 lines (Step 0) |
-| `skills/finishing-a-development-branch/SKILL.md` | +20 lines (Step 1.5 + cleanup guard) |
-| `skills/subagent-driven-development/SKILL.md` | 1 line edit |
-| `skills/executing-plans/SKILL.md` | 1 line edit |
-| `skills/using-xiaoming-bootstrap/references/codex-tools.md` | +15 lines |
+| `skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md` | +12 lines (Step 0) |
+| `skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md` | +20 lines (Step 1.5 + cleanup guard) |
+| `skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md` | 1 line edit |
+| `skills/xiaoming-brainstorming-executing-plans/SKILL.md` | 1 line edit |
+| `skills/xiaoming-brainstorming-using-xiaoming/references/codex-tools.md` | +15 lines |
 
 ~50 lines added/changed across 5 files. Zero new files. Zero breaking changes.
 

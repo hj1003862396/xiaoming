@@ -1,6 +1,6 @@
 # Xiaoming (小明) Rebranding Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:subagent-driven-development (recommended) or xiaoming:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:xiaoming-brainstorming-subagent-driven-development (recommended) or xiaoming:xiaoming-brainstorming-executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Fully rebrand the xiaoming project to xiaoming, rename directories, translate skill descriptions to Chinese, map the `/xiaoming` slash command to the brainstorming workflow, and update all internal namespaces and references.
 
@@ -14,25 +14,25 @@
 
 **Files:**
 - Modify: `GEMINI.md`
-- Rename: `skills/using-xiaoming-bootstrap` -> `skills/using-xiaoming-bootstrap`
-- Rename: `skills/brainstorming` -> `skills/xiaoming`
+- Rename: `skills/xiaoming-brainstorming-using-xiaoming` -> `skills/xiaoming-brainstorming-using-xiaoming`
+- Rename: `skills/brainstorming` -> `skills/xiaoming-brainstorming`
 - Rename: `docs/xiaoming` -> `docs/xiaoming`
 
 - [ ] **Step 1: Modify GEMINI.md**
 
 Update the bootstrap pointers in [GEMINI.md](file:///Users/hanjie/IdeaProjects/xiaoming/GEMINI.md):
 ```markdown
-@./skills/using-xiaoming-bootstrap/SKILL.md
-@./skills/using-xiaoming-bootstrap/references/gemini-tools.md
+@./skills/xiaoming-brainstorming-using-xiaoming/SKILL.md
+@./skills/xiaoming-brainstorming-using-xiaoming/references/gemini-tools.md
 ```
 
 - [ ] **Step 2: Run git mv commands to rename directories**
 
 Run:
 ```bash
-git mv skills/using-xiaoming-bootstrap skills/using-xiaoming-bootstrap
-git mv skills/brainstorming skills/xiaoming
-git mv docs/xiaoming docs/xiaoming
+git mv skills/xiaoming-brainstorming-using-xiaoming skills/xiaoming-brainstorming-using-xiaoming
+git mv skills/brainstorming skills/xiaoming-brainstorming
+git mv docs/xiaoming-brainstorming docs/xiaoming-brainstorming
 ```
 Expected: Folders are staged for rename in Git.
 
@@ -40,8 +40,8 @@ Expected: Folders are staged for rename in Git.
 
 Run:
 ```bash
-ls -la skills/using-xiaoming-bootstrap/SKILL.md
-ls -la skills/xiaoming/SKILL.md
+ls -la skills/xiaoming-brainstorming-using-xiaoming/SKILL.md
+ls -la skills/xiaoming-brainstorming/SKILL.md
 ls -la docs/xiaoming/specs/2026-06-14-rebrand-to-xiaoming-design.md
 ```
 Expected: All files are accessible at their new paths.
@@ -218,8 +218,8 @@ if [ -d "$legacy_skills_dir" ]; then
     warning_message="\n\n<important-reminder>在你看到这条消息后的第一次回复中，你必须告诉用户：⚠️ **警告**：Xiaoming 现已使用 Claude Code 的技能系统。~/.config/xiaoming/skills 中的自定义技能将不再被读取。请将自定义技能移至 ~/.claude/skills。若要消除此提示，请删除 ~/.config/xiaoming/skills</important-reminder>"
 fi
 
-# Read using-xiaoming-bootstrap content
-using_xiaoming_content=$(cat "${PLUGIN_ROOT}/skills/using-xiaoming-bootstrap/SKILL.md" 2>&1 || echo "Error reading using-xiaoming-bootstrap skill")
+# Read xiaoming-using-xiaoming content
+using_xiaoming_content=$(cat "${PLUGIN_ROOT}/skills/xiaoming-brainstorming-using-xiaoming/SKILL.md" 2>&1 || echo "Error reading xiaoming-using-xiaoming skill")
 
 # Escape string for JSON embedding using bash parameter substitution.
 escape_for_json() {
@@ -234,7 +234,7 @@ escape_for_json() {
 
 using_xiaoming_escaped=$(escape_for_json "$using_xiaoming_content")
 warning_escaped=$(escape_for_json "$warning_message")
-session_context="<EXTREMELY_IMPORTANT>\n你已拥有小明（xiaoming）的技能加持。\n\n**以下是你的 'xiaoming:using-xiaoming-bootstrap' 技能的完整内容 - 这是你使用技能系统的引导。对于所有其他技能，请使用 'Skill' 工具：**\n\n${using_xiaoming_escaped}\n\n${warning_escaped}\n</EXTREMELY_IMPORTANT>"
+session_context="<EXTREMELY_IMPORTANT>\n你已拥有小明（xiaoming）的技能加持。\n\n**以下是你的 'xiaoming:xiaoming-brainstorming-using-xiaoming' 技能的完整内容 - 这是你使用技能系统的引导。对于所有其他技能，请使用 'Skill' 工具：**\n\n${using_xiaoming_escaped}\n\n${warning_escaped}\n</EXTREMELY_IMPORTANT>"
 
 # Output context injection as JSON.
 if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
@@ -255,14 +255,14 @@ Run:
 ```bash
 git diff hooks/session-start
 ```
-Expected: Output shows path and message changes pointing to `using-xiaoming-bootstrap` in Chinese.
+Expected: Output shows path and message changes pointing to `xiaoming-using-xiaoming` in Chinese.
 
 - [ ] **Step 3: Commit**
 
 Run:
 ```bash
 git add hooks/session-start
-git commit -m "feat: localize hook messages and point session-start to using-xiaoming-bootstrap"
+git commit -m "feat: localize hook messages and point session-start to xiaoming-using-xiaoming"
 ```
 
 ---
@@ -281,21 +281,21 @@ find docs -type f -name "*.md" -exec perl -pi -e 's/xiaoming:/xiaoming:/g' {} +
 ```
 Expected: All skill namespacing calls now use `xiaoming:` instead of `xiaoming:`.
 
-- [ ] **Step 2: Replace all references to xiaoming:xiaoming with xiaoming:xiaoming**
+- [ ] **Step 2: Replace all references to xiaoming:xiaoming-brainstorming with xiaoming:xiaoming-brainstorming**
 
 Run:
 ```bash
-find skills -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming/xiaoming:xiaoming/g' {} +
-find docs -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming/xiaoming:xiaoming/g' {} +
+find skills -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming-brainstorming/xiaoming:xiaoming-brainstorming/g' {} +
+find docs -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming-brainstorming/xiaoming:xiaoming-brainstorming/g' {} +
 ```
-Expected: Call points references to the brainstorming skill correctly target `xiaoming:xiaoming`.
+Expected: Call points references to the brainstorming skill correctly target `xiaoming:xiaoming-brainstorming`.
 
-- [ ] **Step 3: Replace all references to xiaoming:using-xiaoming-bootstrap with xiaoming:using-xiaoming-bootstrap**
+- [ ] **Step 3: Replace all references to xiaoming:xiaoming-brainstorming-using-xiaoming with xiaoming:xiaoming-brainstorming-using-xiaoming**
 
 Run:
 ```bash
-find skills -type f -name "*.md" -exec perl -pi -e 's/xiaoming:using-xiaoming-bootstrap/xiaoming:using-xiaoming-bootstrap/g' {} +
-find docs -type f -name "*.md" -exec perl -pi -e 's/xiaoming:using-xiaoming-bootstrap/xiaoming:using-xiaoming-bootstrap/g' {} +
+find skills -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming-brainstorming-using-xiaoming/xiaoming:xiaoming-brainstorming-using-xiaoming/g' {} +
+find docs -type f -name "*.md" -exec perl -pi -e 's/xiaoming:xiaoming-brainstorming-using-xiaoming/xiaoming:xiaoming-brainstorming-using-xiaoming/g' {} +
 ```
 Expected: Bootstrap pointers target the renamed namespace.
 
@@ -304,7 +304,7 @@ Expected: Bootstrap pointers target the renamed namespace.
 Run:
 ```bash
 grep -rn "xiaoming:" skills/ || true
-grep -rn "xiaoming:xiaoming" skills/ || true
+grep -rn "xiaoming:xiaoming-brainstorming" skills/ || true
 ```
 Expected: No lines outputted. All namespaces fully migrated.
 
@@ -327,72 +327,72 @@ git commit -m "refactor: rename xiaoming namespaces to xiaoming across skills an
 
 Edit descriptions in the YAML frontmatter headers of all `SKILL.md` files:
 
-1. **`skills/xiaoming/SKILL.md`**:
+1. **`skills/xiaoming-brainstorming/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在进行任何创造性工作（如创建特性、构建组件、添加功能或修改行为）之前，您必须使用此技能。在实施前探索用户意图、需求和设计。"
    ```
-2. **`skills/using-xiaoming-bootstrap/SKILL.md`**:
+2. **`skills/xiaoming-brainstorming-using-xiaoming/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在启动任何对话时使用 - 确定如何查找和使用技能，在进行任何回复（包括澄清问题）之前，都必须调用 Skill 工具"
    ```
-3. **`skills/dispatching-parallel-agents/SKILL.md`**:
+3. **`skills/xiaoming-brainstorming-dispatching-parallel-agents/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "当面临两个或以上可在没有共享状态或顺序依赖关系的情况下独立进行的任务时使用"
    ```
-4. **`skills/executing-plans/SKILL.md`**:
+4. **`skills/xiaoming-brainstorming-executing-plans/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "当您有已编写的实施计划且需要在带有评审检查点的单独会话中执行时使用"
    ```
-5. **`skills/finishing-a-development-branch/SKILL.md`**:
+5. **`skills/xiaoming-brainstorming-finishing-a-development-branch/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "当实施完成、所有测试通过，并且您需要决定如何集成工作时使用 - 通过提供合并、PR 或清理等结构化选项来指导完成开发工作"
    ```
-6. **`skills/receiving-code-review/SKILL.md`**:
+6. **`skills/xiaoming-brainstorming-receiving-code-review/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在收到代码审查反馈并准备实施建议前使用，特别是如果反馈不明确或在技术上令人存疑 - 这需要技术严谨性和验证，而不是形式上的同意或盲目执行"
    ```
-7. **`skills/requesting-code-review/SKILL.md`**:
+7. **`skills/xiaoming-brainstorming-requesting-code-review/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在完成任务、实现主要特性或在合并前使用，以验证工作是否符合要求"
    ```
-8. **`skills/subagent-driven-development/SKILL.md`**:
+8. **`skills/xiaoming-brainstorming-subagent-driven-development/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在当前会话中执行包含独立任务的实施计划时使用"
    ```
-9. **`skills/systematic-debugging/SKILL.md`**:
+9. **`skills/xiaoming-brainstorming-systematic-debugging/SKILL.md`**:
    Replace line 3:
    ```yaml
    description: "在遇到任何 Bug、测试失败或非预期行为时，且在提出修复方案之前使用"
    ```
-10. **`skills/test-driven-development/SKILL.md`**:
+10. **`skills/xiaoming-brainstorming-test-driven-development/SKILL.md`**:
     Replace line 3:
     ```yaml
     description: "在实现任何特性或修复 Bug 时，且在编写任何业务代码前使用"
     ```
-11. **`skills/using-git-worktrees/SKILL.md`**:
+11. **`skills/xiaoming-brainstorming-using-git-worktrees/SKILL.md`**:
     Replace line 3:
     ```yaml
     description: "在启动需要与当前工作区隔离的特性工作时，或在执行实施计划之前使用 - 通过原生工具或 git worktree 回退方案确保隔离的工作区存在"
     ```
-12. **`skills/verification-before-completion/SKILL.md`**:
+12. **`skills/xiaoming-brainstorming-verification-before-completion/SKILL.md`**:
     Replace line 3:
     ```yaml
     description: "在声称工作已完成、已修复或已通过之前，以及在提交或创建 PR 前使用 - 要求在做出任何成功声明前运行验证命令并确认输出；凡事讲求证据，严禁空口凭断"
     ```
-13. **`skills/writing-plans/SKILL.md`**:
+13. **`skills/xiaoming-brainstorming-writing-plans/SKILL.md`**:
     Replace line 3:
     ```yaml
     description: "当您有针对多步骤任务的规范或需求时，在接触代码之前使用"
     ```
-14. **`skills/writing-skills/SKILL.md`**:
+14. **`skills/xiaoming-brainstorming-writing-skills/SKILL.md`**:
     Replace line 3:
     ```yaml
     description: "在创建新技能、编辑现有技能或在部署前验证技能正常工作时使用"
@@ -441,8 +441,8 @@ check_dir() {
         echo "✅ Directory exists: $1"
     fi
 }
-check_dir "skills/xiaoming"
-check_dir "skills/using-xiaoming-bootstrap"
+check_dir "skills/xiaoming-brainstorming"
+check_dir "skills/xiaoming-brainstorming-using-xiaoming"
 check_dir "docs/xiaoming"
 
 # 2. Check manifests JSON validity and keys
@@ -478,13 +478,13 @@ else
 fi
 
 # 4. Check for old brainstorming namespace references
-dangling_brainstorming=$(grep -rn "xiaoming:xiaoming" skills/ docs/ || true)
+dangling_brainstorming=$(grep -rn "xiaoming:xiaoming-brainstorming" skills/ docs/ || true)
 if [ -n "$dangling_brainstorming" ]; then
-    echo "❌ Dangling 'xiaoming:xiaoming' references found (should be 'xiaoming:xiaoming'):"
+    echo "❌ Dangling 'xiaoming:xiaoming-brainstorming' references found (should be 'xiaoming:xiaoming-brainstorming'):"
     echo "$dangling_brainstorming"
     errors=$((errors+1))
 else
-    echo "✅ No dangling 'xiaoming:xiaoming' references found."
+    echo "✅ No dangling 'xiaoming:xiaoming-brainstorming' references found."
 fi
 
 # Summary

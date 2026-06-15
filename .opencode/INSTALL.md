@@ -29,10 +29,10 @@ If you previously installed xiaoming using `git clone` and symlinks, remove the 
 ```bash
 # Remove old symlinks
 rm -f ~/.config/opencode/plugins/xiaoming.js
-rm -rf ~/.config/opencode/skills/xiaoming
+rm -rf ~/.config/opencode/skills/xiaoming-brainstorming
 
 # Optionally remove the cloned repo
-rm -rf ~/.config/opencode/xiaoming
+rm -rf ~/.config/opencode/xiaoming-brainstorming
 
 # Remove skills.paths from opencode.json if you added one for xiaoming
 ```
@@ -45,7 +45,7 @@ Use OpenCode's native `skill` tool:
 
 ```
 use skill tool to list skills
-use skill tool to load xiaoming/xiaoming
+use skill tool to load xiaoming/xiaoming-brainstorming
 ```
 
 ## Updating

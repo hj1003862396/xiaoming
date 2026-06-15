@@ -1,6 +1,6 @@
 # OpenCode Support Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:executing-plans to implement this plan task-by-task.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use xiaoming:xiaoming-brainstorming-executing-plans to implement this plan task-by-task.
 
 **Goal:** Add full xiaoming support for OpenCode.ai with a native JavaScript plugin that shares core functionality with the existing Codex implementation.
 
@@ -191,7 +191,7 @@ Add before `module.exports`:
  * Resolve a skill name to its file path, handling shadowing
  * (personal skills override xiaoming skills).
  *
- * @param {string} skillName - Name like "xiaoming:xiaoming" or "my-skill"
+ * @param {string} skillName - Name like "xiaoming:xiaoming-brainstorming" or "my-skill"
  * @param {string} xiaomingDir - Path to xiaoming skills directory
  * @param {string} personalDir - Path to personal skills directory
  * @returns {{skillFile: string, sourceType: string, skillPath: string} | null}
@@ -516,7 +516,7 @@ export const XiaomingPlugin = async ({ project, client, $, directory, worktree }
         name: 'use_skill',
         description: 'Load and read a specific skill to guide your work. Skills contain proven workflows, mandatory processes, and expert techniques.',
         schema: z.object({
-          skill_name: z.string().describe('Name of the skill to load (e.g., "xiaoming:xiaoming" or "my-custom-skill")')
+          skill_name: z.string().describe('Name of the skill to load (e.g., "xiaoming:xiaoming-brainstorming" or "my-custom-skill")')
         }),
         execute: async ({ skill_name }) => {
           // Resolve skill path (handles shadowing: personal > xiaoming)
@@ -663,9 +663,9 @@ After the tools array, add:
 
 ```javascript
     'session.started': async () => {
-      // Read using-xiaoming-bootstrap skill content
+      // Read xiaoming-using-xiaoming skill content
       const usingXiaomingPath = skillsCore.resolveSkillPath(
-        'using-xiaoming-bootstrap',
+        'xiaoming-using-xiaoming',
         xiaomingSkillsDir,
         personalSkillsDir
       );
@@ -723,7 +723,7 @@ When skills reference tools you don't have, substitute OpenCode equivalents:
       );
 
       const updateNotice = hasUpdates ?
-        '\n\n⚠️ **Updates available!** Run `cd ~/.config/opencode/xiaoming && git pull` to update xiaoming.' :
+        '\n\n⚠️ **Updates available!** Run `cd ~/.config/opencode/xiaoming-brainstorming && git pull` to update xiaoming.' :
         '';
 
       // Return context to inject into session
@@ -731,7 +731,7 @@ When skills reference tools you don't have, substitute OpenCode equivalents:
         context: `<EXTREMELY_IMPORTANT>
 You have xiaoming.
 
-**Below is the full content of your 'xiaoming:using-xiaoming-bootstrap' skill - your introduction to using skills. For all other skills, use the 'use_skill' tool:**
+**Below is the full content of your 'xiaoming:xiaoming-brainstorming-using-xiaoming' skill - your introduction to using skills. For all other skills, use the 'use_skill' tool:**
 
 ${usingXiaomingContent}
 
@@ -779,8 +779,8 @@ git commit -m "feat: implement session.started hook for opencode"
 
 ```bash
 # Clone xiaoming skills to OpenCode config directory
-mkdir -p ~/.config/opencode/xiaoming
-git clone https://github.com/obra/xiaoming.git ~/.config/opencode/xiaoming
+mkdir -p ~/.config/opencode/xiaoming-brainstorming
+git clone https://github.com/obra/xiaoming.git ~/.config/opencode/xiaoming-brainstorming
 ```
 
 ### 2. Install the Plugin
@@ -821,7 +821,7 @@ use find_skills tool
 Use the `use_skill` tool to load a specific skill:
 
 ```
-use use_skill tool with skill_name: "xiaoming:xiaoming"
+use use_skill tool with skill_name: "xiaoming:xiaoming-brainstorming"
 ```
 
 ### Personal Skills
@@ -850,7 +850,7 @@ Personal skills override xiaoming skills with the same name.
 ## Updating
 
 ```bash
-cd ~/.config/opencode/xiaoming
+cd ~/.config/opencode/xiaoming-brainstorming
 git pull
 ```
 
@@ -879,7 +879,7 @@ When a skill references a Claude Code tool you don't have:
 ## Getting Help
 
 - Report issues: https://github.com/obra/xiaoming/issues
-- Documentation: https://github.com/obra/xiaoming
+- Documentation: https://github.com/obra/xiaoming-brainstorming
 ```
 
 **Step 2: Verify file created**
@@ -991,7 +991,7 @@ Expected: Shows list of skills with names and descriptions
 
 **Step 2: Test use-skill command**
 
-Run: `.codex/xiaoming-codex use-skill xiaoming:xiaoming | head -20`
+Run: `.codex/xiaoming-codex use-skill xiaoming:xiaoming-brainstorming | head -20`
 Expected: Shows brainstorming skill content
 
 **Step 3: Test bootstrap command**

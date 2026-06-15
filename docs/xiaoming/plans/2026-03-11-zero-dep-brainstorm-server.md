@@ -1,6 +1,6 @@
 # Zero-Dependency Brainstorm Server Implementation Plan
 
-> **For agentic workers:** REQUIRED: Use xiaoming:subagent-driven-development (if subagents available) or xiaoming:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED: Use xiaoming:xiaoming-brainstorming-subagent-driven-development (if subagents available) or xiaoming:xiaoming-brainstorming-executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the brainstorm server's vendored node_modules with a single zero-dependency `server.js` using Node built-ins.
 

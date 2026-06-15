@@ -78,7 +78,7 @@ OUTPUT_FILE="$TEST_PROJECT/claude-output.txt"
 
 PROMPT="You are testing the spec document reviewer.
 
-Read the spec-document-reviewer-prompt.md template in skills/xiaoming/ to understand the review format.
+Read the spec-document-reviewer-prompt.md template in skills/xiaoming-brainstorming/ to understand the review format.
 
 Then review the spec at $TEST_PROJECT/docs/xiaoming/specs/test-feature-design.md using the criteria from that template.
 

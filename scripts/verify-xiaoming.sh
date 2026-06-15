@@ -15,15 +15,15 @@ check_dir() {
         echo "✅ Directory exists: $1"
     fi
 }
-check_dir "skills/xiaoming"
-check_dir "skills/using-xiaoming-bootstrap"
+check_dir "skills/xiaoming-brainstorming"
+check_dir "skills/xiaoming-using-xiaoming"
 check_dir "docs/xiaoming"
 
-if [ ! -f "commands/xiaoming.md" ]; then
-    echo "❌ Slash command missing: commands/xiaoming.md"
+if [ ! -f "commands/xiaoming-brainstorming.md" ]; then
+    echo "❌ Slash command missing: commands/xiaoming-brainstorming.md"
     errors=$((errors+1))
 else
-    echo "✅ Slash command exists: commands/xiaoming.md"
+    echo "✅ Slash command exists: commands/xiaoming-brainstorming.md"
 fi
 
 # 2. Check manifests JSON validity and keys
@@ -68,7 +68,7 @@ fi
 # 4. Check for old brainstorming namespace references
 dangling_brainstorming=$(grep -rn "xiaoming:brainstorming" skills/ docs/ || true)
 if [ -n "$dangling_brainstorming" ]; then
-    echo "❌ Dangling 'xiaoming:brainstorming' references found (should be 'xiaoming:xiaoming'):"
+    echo "❌ Dangling 'xiaoming:brainstorming' references found (should be 'xiaoming:xiaoming-brainstorming'):"
     echo "$dangling_brainstorming"
     errors=$((errors+1))
 else
@@ -96,11 +96,11 @@ else
 fi
 
 # 7. Check OpenCode plugin loads the correct bootstrap skill path
-if grep -q "using-xiaoming/SKILL.md" .opencode/plugins/xiaoming.js 2>/dev/null; then
-    echo "❌ OpenCode plugin still references missing using-xiaoming/SKILL.md"
+if grep -q "using-xiaoming-bootstrap" .opencode/plugins/xiaoming.js 2>/dev/null; then
+    echo "❌ OpenCode plugin still references missing using-xiaoming-bootstrap"
     errors=$((errors+1))
 else
-    echo "✅ OpenCode plugin references using-xiaoming-bootstrap."
+    echo "✅ OpenCode plugin references xiaoming-using-xiaoming."
 fi
 
 # Summary

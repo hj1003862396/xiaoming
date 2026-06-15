@@ -15,7 +15,7 @@ run_present_file_check() {
 }
 
 run_missing_file_check() {
-    mv "$SUPERPOWERS_SKILLS_DIR/using-xiaoming-bootstrap/SKILL.md" "$TEST_HOME/using-xiaoming-bootstrap.SKILL.md.bak"
+    mv "$SUPERPOWERS_SKILLS_DIR/xiaoming-using-xiaoming/SKILL.md" "$TEST_HOME/xiaoming-using-xiaoming.SKILL.md.bak"
 
     node "$SCRIPT_DIR/test-bootstrap-caching.mjs" "$SUPERPOWERS_PLUGIN_FILE" missing
 }
