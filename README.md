@@ -31,3 +31,32 @@ Cursor Settings → Plugins → 启用 Xiaoming
 # 验收
 /xiaoming-brainstorming 你好
 ```
+
+## 安装指南 (Antigravity)
+
+```bash
+# 克隆后安装
+git clone https://github.com/hj1003862396/xiaoming.git
+cd xiaoming
+./scripts/sync-to-antigravity-local.sh
+```
+
+```text
+# 启用插件
+Antigravity 会在启动时自动从 ~/.gemini/config/plugins/ 加载插件，无需手动配置。
+```
+
+```bash
+# 更新
+./scripts/sync-to-antigravity-local.sh
+```
+
+```bash
+# 验证
+./scripts/verify-xiaoming.sh
+```
+
+```text
+# 验收
+/xiaoming-brainstorming 你好
+```
