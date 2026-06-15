@@ -13,6 +13,7 @@
       "RELEASE-NOTES.md",
       "node_modules",
       ".git",
+      ".antigravity-plugin",
       ".version-bump.json",
       "scripts/bump-version.sh"
     ]
