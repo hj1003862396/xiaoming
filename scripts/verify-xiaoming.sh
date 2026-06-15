@@ -55,6 +55,14 @@ else
     errors=$((errors+1))
 fi
 
+if [ -f "scripts/sync-to-antigravity-local.sh" ] && [ -x "scripts/sync-to-antigravity-local.sh" ]; then
+    echo "✅ Antigravity local sync script exists and is executable"
+else
+    echo "❌ Missing or non-executable scripts/sync-to-antigravity-local.sh"
+    errors=$((errors+1))
+fi
+
+
 # 3. Check for dangling superpowers namespaces in skills and docs
 dangling_ns=$(grep -rn "superpowers:" skills/ docs/ || true)
 if [ -n "$dangling_ns" ]; then
