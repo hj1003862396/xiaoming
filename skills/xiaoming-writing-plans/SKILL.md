@@ -7,7 +7,7 @@ description: "当您有针对多步骤任务的规范或需求时，在接触代
 
 ## 概述
 
-编写全面的实施计划，假设工程师对我们的代码库零上下文，且品味值得商榷。记录他们需要知道的一切：每个任务要修改哪些文件、代码、测试、可能需要查阅的文档、如何测试。将整个计划给他们，分解为细粒度的任务。DRY（不要重复自己）、YAGNI（你不会需要它）、TDD（测试驱动开发）。
+编写全面的实施计划，假设工程师对我们的代码库零上下文，且品味值得商榷。记录他们需要知道的一切：每个任务要修改哪些文件、代码、可能需要查阅的文档、如何验证。将整个计划给他们，分解为细粒度的任务。DRY（不要重复自己）、YAGNI（你不会需要它）。
 
 假设他们是熟练的开发者，但对我们的工具集或问题领域几乎一无所知。假设他们对好的测试设计不是很了解。
 
@@ -36,10 +36,8 @@ description: "当您有针对多步骤任务的规范或需求时，在接触代
 ## 细粒度任务粒度
 
 **每个步骤是一个动作（2-5 分钟）：**
-- "写失败测试" — 一个步骤
-- "运行它确保失败" — 一个步骤
-- "实施让测试通过的最少代码" — 一个步骤
-- "运行测试确保通过" — 一个步骤
+- "编写最少实施代码" — 一个步骤
+- "运行命令/脚本验证实现效果" — 一个步骤
 
 ## 计划文档头部
 
@@ -67,32 +65,18 @@ description: "当您有针对多步骤任务的规范或需求时，在接触代
 **文件：**
 - 创建：`exact/path/to/file.py`
 - 修改：`exact/path/to/existing.py:123-145`
-- 测试：`tests/exact/path/to/test.py`
 
-- [ ] **步骤 1：写失败测试**
-
-```python
-def test_specific_behavior():
-    result = function(input)
-    assert result == expected
-```
-
-- [ ] **步骤 2：运行测试验证其失败**
-
-运行：`pytest tests/path/test.py::test_name -v`
-预期：FAIL，提示"function not defined"
-
-- [ ] **步骤 3：写最少实施代码**
+- [ ] **步骤 1：写最少实施代码**
 
 ```python
 def function(input):
     return expected
 ```
 
-- [ ] **步骤 4：运行测试验证其通过**
+- [ ] **步骤 2：运行命令验证其正确性**
 
-运行：`pytest tests/path/test.py::test_name -v`
-预期：PASS
+运行：`python -c "from path.file import function; print(function(input))"`
+预期：输出 `expected`
 ````
 
 ## 不得使用占位符
@@ -109,7 +93,7 @@ def function(input):
 - 始终使用精确的文件路径
 - 每个步骤中完整的代码——如果步骤修改代码，展示代码
 - 带预期输出的精确命令
-- DRY、YAGNI、TDD
+- DRY、YAGNI
 
 ## 自我审查
 
